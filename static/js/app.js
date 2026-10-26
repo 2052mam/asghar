@@ -2,7 +2,7 @@
    The browser owns the workspace; the server owns the maths. Every mutation is
    persisted locally and re-scored through the same Python scoring function. */
 
-import { initLang, getLang, setLang, toggleLang, t, loc } from "./i18n.js";
+import { initLang, getLang, setLang, t, loc } from "./i18n.js";
 import {
   esc, num, compact, horizontalBars, histogram, donut, radar, chartEmpty,
 } from "./charts.js";
@@ -15,6 +15,18 @@ const PRESETS = {
   base: { return: 15, volatility: 30, years: 1, simulations: 10000 },
   stressed: { return: 0, volatility: 55, years: 1, simulations: 15000 },
 };
+
+/** Stable identity colours for the six factors — used in charts, table headers,
+    sliders, the radar and the legend so a factor is recognisable everywhere. */
+const FACTOR_COLORS = {
+  competition: "var(--f-competition)",
+  valuation: "var(--f-valuation)",
+  earnings_quality: "var(--f-earnings)",
+  growth: "var(--f-growth)",
+  market_momentum: "var(--f-momentum)",
+  risk_control: "var(--f-risk)",
+};
+function factorColor(key) { return FACTOR_COLORS[key] || "var(--accent-2)"; }
 
 const state = {
   meta: null,
@@ -180,10 +192,13 @@ function localizeStatic() {
   document.querySelectorAll("[data-i18n]").forEach((el) => { el.textContent = t(el.dataset.i18n); });
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => { el.placeholder = t(el.dataset.i18nPlaceholder); });
   document.querySelectorAll("[data-i18n-aria-label]").forEach((el) => { el.setAttribute("aria-label", t(el.dataset.i18nAriaLabel)); });
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    const active = button.dataset.lang === getLang();
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
   document.title = t("doc.title");
   updateViewTitle();
-  const label = $("lang-label");
-  if (label) label.textContent = getLang() === "en" ? "FA" : "EN";
 }
 
 function updateViewTitle() {
@@ -196,9 +211,10 @@ function updateViewTitle() {
 function initTheme() {
   let saved = null;
   try { saved = localStorage.getItem("aqx.theme"); } catch { /* ignore */ }
-  state.theme = saved === "light" || saved === "dark"
-    ? saved
-    : (window.matchMedia?.("(prefers-color-scheme: light)").matches ? "light" : "dark");
+  // Dark is the product's signature theme: it carries the aurora identity and
+  // gives the illustrated hero a coherent surround. A saved light choice is
+  // honoured and the toggle is always visible in the topbar.
+  state.theme = saved === "light" || saved === "dark" ? saved : "dark";
   applyTheme();
 }
 
@@ -215,6 +231,24 @@ function toggleTheme() {
   applyTheme();
   // Charts are CSS-driven, but re-render to recalculate any measured geometry.
   renderAll();
+}
+
+/** A barely-there pointer parallax on the hero artwork. Decorative only, and
+    disabled entirely when the user asks for reduced motion. */
+function bindHeroParallax() {
+  const hero = $("hero");
+  if (!hero || window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+  hero.addEventListener("pointermove", (event) => {
+    const rect = hero.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    hero.style.setProperty("--px", `${(x * -14).toFixed(1)}px`);
+    hero.style.setProperty("--py", `${(y * -10).toFixed(1)}px`);
+  });
+  hero.addEventListener("pointerleave", () => {
+    hero.style.setProperty("--px", "0px");
+    hero.style.setProperty("--py", "0px");
+  });
 }
 
 /* ─────────────────────────── Bootstrap ─────────────────────────── */
@@ -263,8 +297,11 @@ async function boot() {
 }
 
 function bindEvents() {
-  $("lang-btn").addEventListener("click", () => { toggleLang(); renderAll(); });
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    button.addEventListener("click", () => { setLang(button.dataset.lang); renderAll(); });
+  });
   $("theme-btn").addEventListener("click", toggleTheme);
+  bindHeroParallax();
   $("menu-btn").addEventListener("click", () => openSidebar(true));
   $("sidebar-close").addEventListener("click", () => openSidebar(false));
   $("sidebar-scrim").addEventListener("click", () => openSidebar(false));
@@ -418,7 +455,7 @@ function buildBands() {
   const keys = ["deep_review", "reviewable", "more_evidence", "low_priority", "incomplete"];
   const ranges = { deep_review: "80–100", reviewable: "70–79.99", more_evidence: "60–69.99", low_priority: "0–59.99", incomplete: "—" };
   $("bands-list").innerHTML = keys.map((key) => `
-    <div class="band-row"><div class="band-row-head">${chip(key)}<span class="band-range">${ranges[key]}</span></div>
+    <div class="band-row"><div class="band-row-head">${chip(key)}<span class="band-range" dir="ltr">${ranges[key]}</span></div>
       <p>${esc(statusDetail(key))}</p></div>`).join("");
 }
 
@@ -435,7 +472,7 @@ function buildStatusFilters() {
 function buildUniverseHead() {
   const head = $("universe-head-row");
   head.innerHTML = `<th scope="col">${esc(t("universe.colTicker"))}</th>`
-    + factorKeys().map((key) => `<th scope="col" title="${esc(loc(factorMeta(key)?.hint))}">${esc(factorName(key, true))}</th>`).join("")
+    + factorKeys().map((key) => `<th scope="col" class="factor-th" style="--factor-color:${factorColor(key)}" title="${esc(loc(factorMeta(key)?.hint))}"><i></i>${esc(factorName(key, true))}</th>`).join("")
     + `<th scope="col">${esc(t("universe.colComplete"))}</th><th scope="col"><span class="sr-only">${esc(t("universe.colActions") || "Actions")}</span></th>`;
 }
 
@@ -443,8 +480,8 @@ function buildWeights() {
   const host = $("weight-sliders");
   host.innerHTML = factorKeys().map((key) => {
     const value = Math.round((state.weights[key] || 0) * 100);
-    return `<div class="weight-slider" data-weight="${esc(key)}">
-      <div class="weight-slider-head"><label for="w-${esc(key)}">${esc(factorName(key))}</label><b data-value>${value}%</b></div>
+    return `<div class="weight-slider" data-weight="${esc(key)}" style="--factor-color:${factorColor(key)}">
+      <div class="weight-slider-head"><label for="w-${esc(key)}"><i class="factor-dot"></i>${esc(factorName(key))}</label><b data-value>${value}%</b></div>
       <span class="field-help">${esc(loc(factorMeta(key)?.hint))}</span>
       <input type="range" id="w-${esc(key)}" min="0" max="100" step="1" value="${value}"
         aria-label="${esc(factorName(key))}" style="--pct:${value}%">
@@ -712,12 +749,40 @@ function renderHealth() {
   }
   pill.title = `${stats.complete} / ${stats.total}`;
   $("nav-row-count").textContent = String(stats.total);
+  const fraction = stats.total ? stats.complete / stats.total : 0;
+  const ring = $("sidebar-progress-ring");
+  if (ring) {
+    ring.style.setProperty("--progress", String(Math.round(fraction * 100)));
+    ring.innerHTML = `<span dir="ltr">${num(fraction * 100, 0)}%</span>`;
+  }
+  const progressText = $("sidebar-progress-text");
+  if (progressText) progressText.textContent = `${num(stats.complete)} / ${num(stats.total)}`;
 }
 
-function kpiCard({ label, value, foot, color, meter }) {
+/** Tiny inline sparkline. Decorative; the same numbers are always available in
+    the results table, so this is never the only representation. */
+function sparkline(values, color = "var(--accent-2)") {
+  const width = 92, height = 30, pad = 3;
+  const clean = values.map((v) => Number(v) || 0);
+  const max = Math.max(...clean, 1), min = Math.min(...clean, 0);
+  const span = max - min || 1;
+  const step = clean.length > 1 ? (width - pad * 2) / (clean.length - 1) : 0;
+  const points = clean.map((v, i) => [
+    pad + i * step,
+    height - pad - ((v - min) / span) * (height - pad * 2),
+  ]);
+  const line = points.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(" ");
+  const area = `M${points[0][0].toFixed(1)},${height} L${points.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(" L")} L${points[points.length - 1][0].toFixed(1)},${height} Z`;
+  const last = points[points.length - 1];
+  return `<svg class="kpi-spark" viewBox="0 0 ${width} ${height}" aria-hidden="true" style="--spark:${color}">
+    <path class="kpi-spark-area" d="${area}"/><polyline class="kpi-spark-line" points="${line}"/>
+    <circle class="kpi-spark-dot" cx="${last[0].toFixed(1)}" cy="${last[1].toFixed(1)}" r="2.6"/></svg>`;
+}
+
+function kpiCard({ label, value, foot, color, meter, spark }) {
   return `<div class="kpi" style="--kpi-color:var(--${color})">
     <span class="kpi-label">${esc(label)}</span>
-    <span class="kpi-value" dir="ltr">${value}</span>
+    <div class="kpi-value-row"><span class="kpi-value" dir="ltr">${value}</span>${spark ? sparkline(spark, `var(--${color})`) : ""}</div>
     <span class="kpi-foot">${esc(foot)}</span>
     ${meter !== undefined ? `<span class="kpi-meter"><span style="inline-size:${Math.max(0, Math.min(100, meter))}%"></span></span>` : ""}
   </div>`;
@@ -728,10 +793,15 @@ function renderOverview() {
   const rows = state.ranked?.rows || [];
   const total = stats?.total ?? 0;
   const complete = stats?.complete ?? 0;
+  const bins = (stats?.distribution || []).map((b) => b.count);
+  const coverage = stats?.factor_coverage || {};
+  const coverageSeries = factorKeys().map((key) => (coverage[key] || 0) * 100);
+  const medians = stats?.factor_medians || {};
+  const profileSeries = factorKeys().map((key) => medians[key] ?? 0);
   $("overview-kpis").innerHTML = [
-    kpiCard({ label: t("kpi.universe"), value: num(total), foot: t("kpi.universeFoot"), color: "accent-2" }),
-    kpiCard({ label: t("kpi.complete"), value: `${num(complete)}<small> / ${num(total)}</small>`, foot: t("kpi.completeFoot"), color: "accent", meter: total ? (complete / total) * 100 : 0 }),
-    kpiCard({ label: t("kpi.median"), value: scoreText(stats?.median), foot: t("kpi.medianFoot"), color: "accent-2", meter: stats?.median ?? 0 }),
+    kpiCard({ label: t("kpi.universe"), value: num(total), foot: t("kpi.universeFoot"), color: "accent-2", spark: bins.length ? bins : [0, 0] }),
+    kpiCard({ label: t("kpi.complete"), value: `${num(complete)}<small> / ${num(total)}</small>`, foot: t("kpi.completeFoot"), color: "accent", meter: total ? (complete / total) * 100 : 0, spark: coverageSeries }),
+    kpiCard({ label: t("kpi.median"), value: scoreText(stats?.median), foot: t("kpi.medianFoot"), color: "accent-2", meter: stats?.median ?? 0, spark: profileSeries }),
     kpiCard({ label: t("kpi.asOf"), value: state.asOf ? `<span dir="ltr">${esc(state.asOf)}</span>` : `<small>${esc(t("kpi.noDate"))}</small>`, foot: t("kpi.asOfFoot"), color: "accent-3" }),
   ].join("");
 
@@ -739,25 +809,41 @@ function renderOverview() {
   if (top.length) {
     horizontalBars($("overview-chart"), top.map((r) => ({ label: r.ticker, value: r.composite_score, accent: r.rank === 1 })), {
       caption: t("chart.topRows"), labelHeader: t("universe.colTicker"), valueHeader: t("chart.score"),
+      barColors: top.map((r) => factorColor(factorKeys().reduce((best, key) =>
+        (r.factors[key] ?? -1) > (r.factors[best] ?? -1) ? key : best, factorKeys()[0]))),
     });
   } else {
     chartEmpty($("overview-chart"), t("chart.noData"));
   }
 
   donut($("completeness-chart"), complete, total, { label: t("common.complete"), sub: t("common.complete") });
-  const coverage = stats?.factor_coverage || {};
   $("coverage-list").innerHTML = factorKeys().map((key) => {
     const value = (coverage[key] || 0) * 100;
-    return `<div class="coverage-row" data-low="${value < 100}"><span>${esc(factorName(key, true))}</span><span dir="ltr">${num(value, 0)}%</span>
+    return `<div class="coverage-row" data-low="${value < 100}" style="--factor-color:${factorColor(key)}"><span>${esc(factorName(key, true))}</span><span dir="ltr">${num(value, 0)}%</span>
       <span class="bar-track"><span style="inline-size:${value}%"></span></span></div>`;
   }).join("");
   renderAllWarnings();
 
   const applied = appliedWeights();
   $("overview-weights").innerHTML = factorKeys().map((key) => `
-    <div class="weight-mini-row"><span>${esc(factorName(key))}</span>
+    <div class="weight-mini-row" style="--factor-color:${factorColor(key)}"><span>${esc(factorName(key))}</span>
       <span class="bar-track"><span style="inline-size:${Math.min(100, (applied[key] || 0) * 100 / 0.3)}%"></span></span>
       <b dir="ltr">${esc(pct(applied[key] || 0, 1))}</b></div>`).join("");
+
+  // Hero signature + factor palette: a visual anchor for the six colours.
+  const floatBars = $("hero-float-bars");
+  if (floatBars) {
+    floatBars.innerHTML = factorKeys().map((key) => {
+      const height = 30 + Math.round((applied[key] || 0) * 170);
+      return `<span class="hero-float-bar" style="--factor-color:${factorColor(key)};--bar-h:${height}px" title="${esc(factorName(key))}"></span>`;
+    }).join("");
+  }
+  const legend = $("factor-legend");
+  if (legend) {
+    legend.innerHTML = `<div class="factor-legend-head"><strong>${esc(t("factorLegend.title"))}</strong><span>${esc(t("factorLegend.sub"))}</span></div>
+      <div class="factor-legend-items">${factorKeys().map((key) => `
+        <span class="factor-pill" style="--factor-color:${factorColor(key)}"><i></i>${esc(factorName(key, true))}</span>`).join("")}</div>`;
+  }
 }
 
 function renderUniverse() {
@@ -782,7 +868,7 @@ function renderUniverseBody() {
         const raw = row[key];
         const isEmpty = raw === null || raw === "" || raw === undefined;
         const invalid = !isEmpty && (!Number.isFinite(Number(raw)) || Number(raw) < 0 || Number(raw) > 100);
-        return `<td data-label="${esc(factorName(key, true))}"><input class="cell-input ${isEmpty ? "is-empty" : ""} ${invalid ? "is-invalid" : ""}"
+        return `<td data-label="${esc(factorName(key, true))}" style="--factor-color:${factorColor(key)}"><input class="cell-input ${isEmpty ? "is-empty" : ""} ${invalid ? "is-invalid" : ""}"
           type="text" inputmode="decimal" dir="ltr" value="${esc(isEmpty ? "" : raw)}"
           data-factor="${esc(key)}" aria-label="${esc(row.ticker)} — ${esc(factorName(key))}" maxlength="8"></td>`;
       }).join("");
@@ -825,11 +911,29 @@ function renderResults() {
   } else {
     chartEmpty($("distribution-chart"), t("chart.noData"));
   }
+  renderSpectrum(stats?.median);
 
   buildBands();
   buildStatusFilters();
   renderRankedList();
   renderSensitivity(rows, stats);
+}
+
+/** A 0–100 gradient ruler that makes the band boundaries physically visible. */
+function renderSpectrum(median) {
+  const host = $("score-spectrum");
+  if (!host) return;
+  const segments = [
+    { key: "low", from: 0, to: 60, tone: "var(--tone-neutral)" },
+    { key: "mid", from: 60, to: 70, tone: "var(--tone-caution)" },
+    { key: "high", from: 70, to: 80, tone: "var(--tone-positive)" },
+    { key: "top", from: 80, to: 100, tone: "var(--tone-focus)" },
+  ];
+  const marker = median === null || median === undefined ? "" :
+    `<span class="spectrum-marker" style="inset-inline-start:${Math.max(2, Math.min(98, median))}%" title="${esc(t("chart.medianLine"))}: ${esc(scoreText(median, 1))}"><i></i></span>`;
+  host.innerHTML = `<div class="spectrum-head"><strong>${esc(t("spectrum.title"))}</strong><span dir="ltr">0 — 100</span></div>
+    <div class="spectrum-track">${segments.map((s) => `<span class="spectrum-seg" style="--seg-color:${s.tone};inline-size:${s.to - s.from}%"></span>`).join("")}${marker}</div>
+    <div class="spectrum-labels">${segments.map((s) => `<span style="--seg-color:${s.tone}"><i></i>${esc(t(`spectrum.${s.key}`))}</span>`).join("")}</div>`;
 }
 
 function renderRankedList() {
@@ -857,7 +961,11 @@ function renderRankedList() {
     }
     return `<div class="rank-row ${row.score_complete ? "" : "is-incomplete"} ${row.rank === 1 ? "is-top" : ""}">
       <span class="rank-number">${row.rank !== null ? num(row.rank) : "—"}</span>
-      <span class="rank-name"><b dir="auto">${esc(row.ticker)}</b>${chip(row.status_key)}</span>
+      <span class="rank-name"><b dir="auto">${esc(row.ticker)}</b><span class="rank-meta">${chip(row.status_key)}
+        <span class="factor-spark" aria-hidden="true">${factorKeys().map((key) => {
+          const value = row.factors[key];
+          return `<i style="--factor-color:${factorColor(key)};--h:${value === null || value === undefined ? 6 : Math.max(8, (Number(value) / 100) * 100)}%"></i>`;
+        }).join("")}</span></span></span>
       <span class="rank-score-bar"><span class="bar-track"><span style="inline-size:${score !== null ? Math.max(0, Math.min(100, score)) : 0}%"></span></span></span>
       <span class="rank-score ${score === null ? "is-empty" : ""}" dir="ltr">${scoreText(score)}</span>
       ${deltaHtml}
@@ -973,7 +1081,8 @@ function renderDrawer(id) {
 
   $("drawer-body").innerHTML = summary + incomplete + radarBlock + breakdown + counter + notTell;
   radar($("drawer-radar"), keys.map((key) => factorName(key, true)), scores,
-    keys.map((key) => medians[key] ?? null), { caption: t("drawer.profileTitle") });
+    keys.map((key) => medians[key] ?? null),
+    { caption: t("drawer.profileTitle"), colors: keys.map(factorColor) });
 }
 
 async function saveMemo() {

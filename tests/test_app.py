@@ -45,15 +45,20 @@ def test_index_and_static_assets(client):
     assert response.status_code == 200
     html = response.get_data(as_text=True)
     assert "AQx–Tirole Omega" in html
+    assert '<html lang="fa" dir="rtl"' in html, "Persian/RTL is the default document language"
     assert "/static/css/styles.css" in html
     assert 'type="module" src="/static/js/app.js"' in html
+    assert 'lang-opt' in html and 'data-lang="en"' in html
     for asset in ("/static/css/styles.css", "/static/js/app.js",
-                  "/static/js/i18n.js", "/static/js/charts.js", "/static/favicon.svg"):
-        assert client.get(asset).status_code == 200
+                  "/static/js/i18n.js", "/static/js/charts.js", "/static/favicon.svg",
+                  "/static/img/hero-aurora.jpg", "/static/img/girih.svg",
+                  "/static/fonts/vazirmatn-arabic-wght-normal.woff2",
+                  "/static/fonts/plus-jakarta-sans-latin-wght-normal.woff2"):
+        assert client.get(asset).status_code == 200, asset
 
 
 def test_health_and_meta(client):
-    assert client.get("/api/health").json["version"] == "1.1.0"
+    assert client.get("/api/health").json["version"] == "1.2.0"
     meta = client.get("/api/meta").json
     assert meta["ok"] is True
     assert len(meta["factors"]) == 6

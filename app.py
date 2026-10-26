@@ -32,7 +32,7 @@ from aqx_tirole_omega import (
 
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data"
-APP_VERSION = "1.1.0"
+APP_VERSION = "1.2.0"
 FACTOR_KEYS = list(WEIGHTS)
 MAX_ROWS = 250
 MAX_UPLOAD_BYTES = 2 * 1024 * 1024

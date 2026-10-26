@@ -1,55 +1,61 @@
 <!doctype html>
-<html lang="en" dir="ltr" data-theme="dark">
+<html lang="fa" dir="rtl" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark light">
-  <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="AQx–Tirole Omega — a transparent, bilingual research workspace for multifactor screening. Educational prototype, not investment advice.">
-  <title>AQx–Tirole Omega · Research workspace</title>
+  <meta name="theme-color" content="#080d1b">
+  <meta name="description" content="AQx–تیرو امگا — فضای پژوهشی شفاف و دوزبانه برای غربالگری ششعاملی. نمونه اولیه آموزشی، نه توصیه سرمایهگذاری.">
+  <title>AQx–تیرو امگا · فضای پژوهش</title>
   <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <link rel="preload" href="/static/fonts/vazirmatn-arabic-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/static/fonts/vazirmatn-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/static/css/styles.css">
   <script type="module" src="/static/js/app.js"></script>
 </head>
 <body>
-<a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to main content</a>
+<a class="skip-link" href="#main" data-i18n="a11y.skip">پرش به محتوای اصلی</a>
 
 <div class="app-shell">
   <!-- ───────────────────────── Sidebar ───────────────────────── -->
-  <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+  <aside class="sidebar" id="sidebar" aria-label="ناوبری اصلی">
     <div class="brand">
       <div class="brand-mark" aria-hidden="true">
         <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-opacity=".35"/><path d="M9 25.5 16 15l5.5 7.5L26 13l5 12.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="25.5" r="2.6" fill="currentColor"/></svg>
       </div>
       <div class="brand-text">
         <strong>AQx<span class="brand-omega">Ω</span></strong>
-        <small data-i18n="brand.subtitle">Tirole Omega · v1.1</small>
+        <small data-i18n="brand.subtitle">تیرو امگا · نسخه ۱.۱</small>
       </div>
-      <button class="icon-btn sidebar-close" id="sidebar-close" data-i18n-aria-label="a11y.closeMenu" aria-label="Close menu">
+      <button class="icon-btn sidebar-close" id="sidebar-close" data-i18n-aria-label="a11y.closeMenu" aria-label="بستن منو">
         <svg class="icon"><use href="#i-close"></use></svg>
       </button>
     </div>
 
-    <nav class="nav" aria-label="Sections">
-      <p class="nav-label" data-i18n="nav.workspace">WORKSPACE</p>
-      <a class="nav-item" href="#/overview" data-view="overview"><svg class="icon"><use href="#i-grid"></use></svg><span data-i18n="nav.overview">Overview</span></a>
-      <a class="nav-item" href="#/universe" data-view="universe"><svg class="icon"><use href="#i-table"></use></svg><span data-i18n="nav.universe">Universe</span><span class="nav-badge" id="nav-row-count">0</span></a>
-      <a class="nav-item" href="#/results" data-view="results"><svg class="icon"><use href="#i-chart"></use></svg><span data-i18n="nav.results">Results</span></a>
-      <a class="nav-item" href="#/scenario" data-view="scenario"><svg class="icon"><use href="#i-flask"></use></svg><span data-i18n="nav.scenario">Scenario lab</span></a>
-      <a class="nav-item" href="#/method" data-view="method"><svg class="icon"><use href="#i-book"></use></svg><span data-i18n="nav.method">Method &amp; limits</span></a>
+    <nav class="nav" aria-label="بخشها">
+      <p class="nav-label" data-i18n="nav.workspace">فضای کار</p>
+      <a class="nav-item" href="#/overview" data-view="overview"><svg class="icon"><use href="#i-grid"></use></svg><span data-i18n="nav.overview">نمای کلی</span></a>
+      <a class="nav-item" href="#/universe" data-view="universe"><svg class="icon"><use href="#i-table"></use></svg><span data-i18n="nav.universe">جامعه نمادها</span><span class="nav-badge" id="nav-row-count">0</span></a>
+      <a class="nav-item" href="#/results" data-view="results"><svg class="icon"><use href="#i-chart"></use></svg><span data-i18n="nav.results">نتایج</span></a>
+      <a class="nav-item" href="#/scenario" data-view="scenario"><svg class="icon"><use href="#i-flask"></use></svg><span data-i18n="nav.scenario">آزمایشگاه سناریو</span></a>
+      <a class="nav-item" href="#/method" data-view="method"><svg class="icon"><use href="#i-book"></use></svg><span data-i18n="nav.method">روش و محدودیتها</span></a>
     </nav>
 
     <div class="sidebar-foot">
+      <div class="sidebar-progress" id="sidebar-progress">
+        <div class="sidebar-progress-ring" id="sidebar-progress-ring"></div>
+        <div><strong data-i18n="sidebar.progress">کامل بودن دادهها</strong><span id="sidebar-progress-text">—</span></div>
+      </div>
       <div class="integrity-card">
         <svg class="icon"><use href="#i-shield"></use></svg>
         <div>
-          <strong data-i18n="integrity.title">Research tool, not a signal</strong>
-          <span data-i18n="integrity.body">No live market data. No recommendations.</span>
+          <strong data-i18n="integrity.title">ابزار پژوهش، نه سیگنال</strong>
+          <span data-i18n="integrity.body">بدون داده زنده بازار. بدون توصیهگری.</span>
         </div>
       </div>
       <div class="sidebar-meta">
-        <span data-i18n="integrity.local">Your data stays in this browser</span>
-        <span class="version" id="app-version">v1.1.0</span>
+        <span data-i18n="integrity.local">دادههای شما در همین مرورگر میماند</span>
+        <span class="version" id="app-version">v1.2.0</span>
       </div>
     </div>
   </aside>
@@ -58,22 +64,23 @@
   <!-- ───────────────────────── Workspace ───────────────────────── -->
   <div class="workspace">
     <header class="topbar">
-      <button class="icon-btn menu-btn" id="menu-btn" data-i18n-aria-label="a11y.openMenu" aria-label="Open menu">
+      <button class="icon-btn menu-btn" id="menu-btn" data-i18n-aria-label="a11y.openMenu" aria-label="باز کردن منو">
         <svg class="icon"><use href="#i-menu"></use></svg>
       </button>
       <div class="topbar-heading">
-        <span class="eyebrow" data-i18n="topbar.eyebrow">MULTIFACTOR RESEARCH / AQx–TIROLE OMEGA</span>
-        <h1 id="view-title" data-i18n="nav.overview">Overview</h1>
+        <span class="eyebrow" data-i18n="topbar.eyebrow">پژوهش چندعاملی / AQx–تیرو امگا</span>
+        <h1 id="view-title" data-i18n="nav.overview">نمای کلی</h1>
       </div>
       <div class="topbar-actions">
         <div class="health-pill" id="health-pill" role="status" title="">
           <span class="health-dot" aria-hidden="true"></span>
-          <span id="health-text" data-i18n="health.checking">Checking data…</span>
+          <span id="health-text" data-i18n="health.checking">در حال بررسی دادهها…</span>
         </div>
-        <button class="seg-btn" id="lang-btn" data-i18n-aria-label="a11y.language" aria-label="Switch language">
-          <svg class="icon"><use href="#i-globe"></use></svg><span id="lang-label">FA</span>
-        </button>
-        <button class="icon-btn" id="theme-btn" data-i18n-aria-label="a11y.theme" aria-label="Switch colour theme">
+        <div class="lang-switch" role="group" data-i18n-aria-label="a11y.language" aria-label="تغییر زبان">
+          <button class="lang-opt" data-lang="fa" aria-label="فارسی">فا</button>
+          <button class="lang-opt" data-lang="en" aria-label="English">EN</button>
+        </div>
+        <button class="icon-btn" id="theme-btn" data-i18n-aria-label="a11y.theme" aria-label="تغییر تم رنگی">
           <svg class="icon" id="theme-icon"><use href="#i-sun"></use></svg>
         </button>
       </div>
@@ -82,46 +89,64 @@
     <main id="main" tabindex="-1">
       <!-- ═══════════════════ OVERVIEW ═══════════════════ -->
       <section class="view is-active" id="view-overview" data-view="overview" aria-labelledby="overview-heading">
-        <div class="hero card">
+        <div class="hero card" id="hero">
+          <div class="hero-art" aria-hidden="true"></div>
+          <div class="hero-pattern" aria-hidden="true"></div>
           <div class="hero-glow" aria-hidden="true"></div>
           <div class="hero-copy">
-            <span class="chip chip-outline"><svg class="icon"><use href="#i-spark"></use></svg><span data-i18n="hero.chip">EDUCATIONAL PROTOTYPE · v1.1</span></span>
-            <h2 id="overview-heading" data-i18n="hero.title">Find what deserves deeper research — not what to buy.</h2>
-            <p data-i18n="hero.body">A calm workspace for turning your own dated research into a transparent six-factor screen. Every weight, score and assumption stays visible, editable and exportable.</p>
+            <span class="chip chip-outline hero-chip"><svg class="icon"><use href="#i-spark"></use></svg><span data-i18n="hero.chip">نمونه اولیه آموزشی · نسخه ۱.۱</span></span>
+            <h2 id="overview-heading" data-i18n="hero.title">پیدا کنید چه چیزی ارزش بررسی عمیقتر دارد — نه اینکه چه بخرید.</h2>
+            <p data-i18n="hero.body">فضایی آرام برای تبدیل پژوهش تاریخدار خود به یک غربال شفاف ششعاملی. هر وزن، امتیاز و فرض، قابل دیدن، ویرایش و خروجی گرفتن است.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#/universe"><svg class="icon is-directional"><use href="#i-arrow-right"></use></svg><span data-i18n="hero.ctaPrimary">Open the universe</span></a>
-              <button class="btn btn-ghost" id="hero-demo-btn"><svg class="icon"><use href="#i-spark"></use></svg><span data-i18n="hero.ctaSecondary">Load illustrative demo</span></button>
+              <a class="btn btn-primary" href="#/universe"><svg class="icon is-directional"><use href="#i-arrow-right"></use></svg><span data-i18n="hero.ctaPrimary">باز کردن جامعه نمادها</span></a>
+              <button class="btn btn-ghost" id="hero-demo-btn"><svg class="icon"><use href="#i-spark"></use></svg><span data-i18n="hero.ctaSecondary">بارگذاری نمای آزمایشی</span></button>
+            </div>
+            <div class="hero-metrics" aria-label="">
+              <div class="hero-metric"><b data-i18n="hero.metric1Value">۶</b><span data-i18n="hero.metric1Label">عامل پژوهشی</span></div>
+              <div class="hero-metric"><b data-i18n="hero.metric2Value">۱۰۰٪</b><span data-i18n="hero.metric2Label">وزن شفاف</span></div>
+              <div class="hero-metric"><b data-i18n="hero.metric3Value">۰</b><span data-i18n="hero.metric3Label">فید داده زنده</span></div>
             </div>
             <div class="hero-trust">
-              <span><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="hero.trust1">No live data feed</span></span>
-              <span><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="hero.trust2">Published formula</span></span>
-              <span><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="hero.trust3">Local-first inputs</span></span>
+              <span><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="hero.trust1">بدون دریافت داده زنده</span></span>
+              <span><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="hero.trust2">فرمول منتشرشده</span></span>
+              <span><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="hero.trust3">ورودیها روی مرورگر شما</span></span>
             </div>
           </div>
           <div class="hero-visual" aria-hidden="true">
-            <div class="orbit">
-              <div class="orbit-ring ring-1"></div><div class="orbit-ring ring-2"></div><div class="orbit-ring ring-3"></div>
-              <div class="orbit-core">Ω</div>
-              <span class="orbit-node n1">CS</span><span class="orbit-node n2">VA</span><span class="orbit-node n3">EQ</span>
-              <span class="orbit-node n4">GR</span><span class="orbit-node n5">MM</span><span class="orbit-node n6">RC</span>
+            <div class="hero-float">
+              <span class="eyebrow" data-i18n="hero.floatEyebrow">امضای عاملها</span>
+              <strong data-i18n="hero.floatTitle">شش ورودی، یک امتیاز</strong>
+              <div class="hero-float-bars" id="hero-float-bars"></div>
+              <span class="hero-float-note" data-i18n="hero.floatNote">هر میله قابل ویرایش است</span>
             </div>
           </div>
         </div>
+
+        <section class="card workflow-card" aria-labelledby="workflow-title">
+          <div class="card-head">
+            <div><h3 id="workflow-title" data-i18n="workflow.title">گردش کاری سهمرحلهای و آگاهانه</h3><p class="card-sub" data-i18n="workflow.sub">رابط شما را از نظر خام به تردید مستند هدایت میکند.</p></div>
+          </div>
+          <ol class="workflow-steps">
+            <li><a class="workflow-step" href="#/universe" data-step="1"><span class="step-num">۰۱</span><svg class="icon"><use href="#i-table"></use></svg><div><b data-i18n="workflow.1t">شواهد تاریخدار وارد کنید</b><p data-i18n="workflow.1b">شش عامل را از ۰ تا ۱۰۰ امتیاز دهید و منبع اعداد را ثبت کنید.</p></div></a></li>
+            <li><a class="workflow-step" href="#/results" data-step="2"><span class="step-num">۰۲</span><svg class="icon"><use href="#i-layers"></use></svg><div><b data-i18n="workflow.2t">رتبهبندی را بیازمایید</b><p data-i18n="workflow.2b">وزنها را تغییر دهید، توزیع را ببینید و ردیفهای شکننده را پیدا کنید.</p></div></a></li>
+            <li><a class="workflow-step" href="#/results" data-step="3"><span class="step-num">۰۳</span><svg class="icon"><use href="#i-eye"></use></svg><div><b data-i18n="workflow.3t">خلاف آن را بنویسید</b><p data-i18n="workflow.3b">ضعیفترین عامل را باز کنید و پیش از تصمیم، شواهد تغییر نظرتان را یادداشت کنید.</p></div></a></li>
+          </ol>
+        </section>
 
         <div class="kpi-grid" id="overview-kpis" aria-live="polite"></div>
 
         <div class="grid grid-2-1">
           <section class="card" aria-labelledby="ov-rank-title">
             <div class="card-head">
-              <div><h3 id="ov-rank-title" data-i18n="overview.ranking">Ranking at a glance</h3><p class="card-sub" data-i18n="overview.rankingSub">Top complete rows under your current weights.</p></div>
-              <a class="text-link" href="#/results"><span data-i18n="common.viewAll">View all</span><svg class="icon"><use href="#i-arrow-right"></use></svg></a>
+              <div><h3 id="ov-rank-title" data-i18n="overview.ranking">نگاهی سریع به رتبهبندی</h3><p class="card-sub" data-i18n="overview.rankingSub">ردیفهای کامل برتر با وزنهای فعلی شما.</p></div>
+              <a class="text-link" href="#/results"><span data-i18n="common.viewAll">مشاهده همه</span><svg class="icon"><use href="#i-arrow-right"></use></svg></a>
             </div>
             <div id="overview-chart" class="chart-host"></div>
           </section>
 
           <section class="card" aria-labelledby="ov-health-title">
             <div class="card-head">
-              <div><h3 id="ov-health-title" data-i18n="overview.dataHealth">Data integrity</h3><p class="card-sub" data-i18n="overview.dataHealthSub">Missing inputs are shown, never guessed.</p></div>
+              <div><h3 id="ov-health-title" data-i18n="overview.dataHealth">سلامت دادهها</h3><p class="card-sub" data-i18n="overview.dataHealthSub">ورودیهای نادیده نشان داده میشوند، حدس زده نمیشوند.</p></div>
             </div>
             <div class="health-body">
               <div id="completeness-chart" class="donut-host"></div>
@@ -134,18 +159,19 @@
         <div class="grid grid-1-1">
           <section class="card" aria-labelledby="ov-weights-title">
             <div class="card-head">
-              <div><h3 id="ov-weights-title" data-i18n="overview.weights">How the score is weighted</h3><p class="card-sub" data-i18n="overview.weightsSub">Six subjective inputs, one weighted average.</p></div>
-              <a class="text-link" href="#/universe"><span data-i18n="common.edit">Edit</span><svg class="icon"><use href="#i-arrow-right"></use></svg></a>
+              <div><h3 id="ov-weights-title" data-i18n="overview.weights">امتیاز چگونه وزن میگیرد</h3><p class="card-sub" data-i18n="overview.weightsSub">شش ورودی ذهنی، یک میانگین وزنی.</p></div>
+              <a class="text-link" href="#/universe"><span data-i18n="common.edit">ویرایش</span><svg class="icon"><use href="#i-arrow-right"></use></svg></a>
             </div>
             <div id="overview-weights" class="weights-mini"></div>
+            <div class="factor-legend" id="factor-legend"></div>
           </section>
           <section class="card notice-card" aria-labelledby="ov-notice-title">
             <div class="card-head">
-              <div><h3 id="ov-notice-title" data-i18n="overview.readFirst">Read this first</h3><p class="card-sub" data-i18n="overview.readFirstSub">Context that should travel with every score.</p></div>
+              <div><h3 id="ov-notice-title" data-i18n="overview.readFirst">ابتدا این را بخوانید</h3><p class="card-sub" data-i18n="overview.readFirstSub">زمینهای که باید همراه هر امتیاز بماند.</p></div>
               <svg class="icon notice-icon"><use href="#i-info"></use></svg>
             </div>
             <ul class="notice-list" id="overview-limitations"></ul>
-            <a class="text-link" href="#/method"><span data-i18n="common.allLimits">All limitations &amp; method</span><svg class="icon"><use href="#i-arrow-right"></use></svg></a>
+            <a class="text-link" href="#/method"><span data-i18n="common.allLimits">همه محدودیتها و روش</span><svg class="icon"><use href="#i-arrow-right"></use></svg></a>
           </section>
         </div>
       </section>
@@ -153,37 +179,37 @@
       <!-- ═══════════════════ UNIVERSE ═══════════════════ -->
       <section class="view" id="view-universe" data-view="universe" aria-labelledby="universe-heading" hidden>
         <div class="page-intro">
-          <div><h2 id="universe-heading" data-i18n="universe.title">Universe &amp; factor scores</h2><p data-i18n="universe.intro">Enter scores from 0 to 100. Leave a cell empty when evidence is missing — an empty cell is not a zero.</p></div>
-          <span class="save-state" id="save-state"><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="universe.saved">Saved locally</span></span>
+          <div><h2 id="universe-heading" data-i18n="universe.title">جامعه نمادها و امتیاز عاملها</h2><p data-i18n="universe.intro">امتیازها را بین ۰ تا ۱۰۰ وارد کنید. هنگام نبود شواهد، خانه را خالی بگذارید؛ خانه خالی صفر نیست.</p></div>
+          <span class="save-state" id="save-state"><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="universe.saved">بهصورت محلی ذخیره شد</span></span>
         </div>
 
         <section class="card toolbar-card" aria-label="Data tools">
           <div class="toolbar">
-            <label class="field field-grow"><span class="field-label" data-i18n="universe.dataset">Starting dataset</span>
+            <label class="field field-grow"><span class="field-label" data-i18n="universe.dataset">داده اولیه</span>
               <select id="dataset-select" class="control"></select>
             </label>
             <div class="toolbar-buttons">
               <input type="file" id="file-input" accept=".csv,.txt,.tsv,text/csv" hidden>
-              <button class="btn btn-soft" id="import-btn"><svg class="icon"><use href="#i-upload"></use></svg><span data-i18n="universe.import">Import CSV</span></button>
-              <button class="btn btn-soft" id="template-btn"><svg class="icon"><use href="#i-download"></use></svg><span data-i18n="universe.template">Template</span></button>
-              <button class="btn btn-soft" id="export-btn"><svg class="icon"><use href="#i-download"></use></svg><span data-i18n="universe.export">Export ranked CSV</span></button>
-              <button class="btn btn-primary btn-icon-only" id="add-row-btn" data-i18n-aria-label="universe.addRowAria" aria-label="Add ticker"><svg class="icon"><use href="#i-plus"></use></svg></button>
+              <button class="btn btn-soft" id="import-btn"><svg class="icon"><use href="#i-upload"></use></svg><span data-i18n="universe.import">ورود CSV</span></button>
+              <button class="btn btn-soft" id="template-btn"><svg class="icon"><use href="#i-download"></use></svg><span data-i18n="universe.template">قالب نمونه</span></button>
+              <button class="btn btn-soft" id="export-btn"><svg class="icon"><use href="#i-download"></use></svg><span data-i18n="universe.export">خروجی CSV رتبهبندی</span></button>
+              <button class="btn btn-primary btn-icon-only" id="add-row-btn" data-i18n-aria-label="universe.addRowAria" aria-label="افزودن نماد"><svg class="icon"><use href="#i-plus"></use></svg></button>
             </div>
           </div>
           <p class="dataset-description" id="dataset-description"></p>
           <div class="provenance">
-            <label class="field"><span class="field-label" data-i18n="universe.asOf">Research as-of date</span><input type="date" id="as-of-input" class="control"></label>
-            <label class="field field-grow"><span class="field-label" data-i18n="universe.sourceNote">Data source / provenance note</span><input type="text" id="source-note" class="control" data-i18n-placeholder="universe.sourcePlaceholder" placeholder="e.g. FY1403 audited statements, entered by analyst"></label>
+            <label class="field"><span class="field-label" data-i18n="universe.asOf">تاریخ انجام پژوهش</span><input type="date" id="as-of-input" class="control"></label>
+            <label class="field field-grow"><span class="field-label" data-i18n="universe.sourceNote">منبع داده / یادداشت مستندسازی</span><input type="text" id="source-note" class="control" data-i18n-placeholder="universe.sourcePlaceholder" placeholder="مثلاً صورتهای مالی حسابرسیشده ۱۴۰۳، ورود توسط تحلیلگر"></label>
           </div>
         </section>
 
         <section class="card" aria-labelledby="weights-title">
           <div class="card-head">
-            <div><h3 id="weights-title" data-i18n="universe.weightsTitle">Factor weights</h3><p class="card-sub" data-i18n="universe.weightsSub">Changing a weight changes the ranking. Applied weights are always normalised to 100%.</p></div>
+            <div><h3 id="weights-title" data-i18n="universe.weightsTitle">وزن عاملها</h3><p class="card-sub" data-i18n="universe.weightsSub">تغییر وزن، رتبهبندی را تغییر میدهد. وزنهای اعمالشده همیشه به ۱۰۰٪ نرمال میشوند.</p></div>
             <div class="weight-actions">
               <span class="weight-total" id="weight-total">100%</span>
-              <button class="btn btn-tiny" id="normalize-btn" data-i18n="universe.normalize">Normalise</button>
-              <button class="btn btn-tiny" id="reset-weights-btn" data-i18n="universe.resetWeights">Reset</button>
+              <button class="btn btn-tiny" id="normalize-btn" data-i18n="universe.normalize">نرمالسازی</button>
+              <button class="btn btn-tiny" id="reset-weights-btn" data-i18n="universe.resetWeights">بازنشانی</button>
             </div>
           </div>
           <div id="weight-sliders" class="weight-sliders"></div>
@@ -191,10 +217,10 @@
 
         <section class="card table-card" aria-labelledby="table-title">
           <div class="card-head table-head">
-            <div><h3 id="table-title" data-i18n="universe.scoreTable">Score table</h3><p class="card-sub" id="table-caption" data-i18n="universe.scoreTableSub">Scores are recalculated automatically.</p></div>
+            <div><h3 id="table-title" data-i18n="universe.scoreTable">جدول امتیازها</h3><p class="card-sub" id="table-caption" data-i18n="universe.scoreTableSub">امتیازها بهطور خودکار محاسبه میشوند.</p></div>
             <div class="table-tools">
-              <label class="search-field"><svg class="icon"><use href="#i-search"></use></svg><input type="search" id="universe-search" data-i18n-placeholder="common.search" placeholder="Search tickers…" data-i18n-aria-label="common.search" aria-label="Search tickers"></label>
-              <button class="btn btn-tiny btn-danger-ghost" id="clear-btn"><svg class="icon"><use href="#i-trash"></use></svg><span data-i18n="universe.clear">Clear</span></button>
+              <label class="search-field"><svg class="icon"><use href="#i-search"></use></svg><input type="search" id="universe-search" data-i18n-placeholder="common.search" placeholder="جستجوی نماد…" data-i18n-aria-label="common.search" aria-label="جستجوی نماد…"></label>
+              <button class="btn btn-tiny btn-danger-ghost" id="clear-btn"><svg class="icon"><use href="#i-trash"></use></svg><span data-i18n="universe.clear">پاک کردن</span></button>
             </div>
           </div>
           <div class="table-scroll">
@@ -204,7 +230,7 @@
             </table>
           </div>
           <div class="table-foot">
-            <p><svg class="icon"><use href="#i-info"></use></svg><span data-i18n="universe.tableNote">Empty cells stay empty: no composite score is computed for an incomplete row. Use Tab / Shift+Tab to move between cells.</span></p>
+            <p><svg class="icon"><use href="#i-info"></use></svg><span data-i18n="universe.tableNote">خانههای خالی، خالی میمانند: برای ردیف ناقص امتیاز ترکیبی محاسبه نمیشود. با Tab / Shift+Tab بین خانهها حرکت کنید.</span></p>
             <span id="row-count-label"></span>
           </div>
           <div id="universe-warnings" class="inline-notices"></div>
@@ -214,38 +240,39 @@
       <!-- ═══════════════════ RESULTS ═══════════════════ -->
       <section class="view" id="view-results" data-view="results" aria-labelledby="results-heading" hidden>
         <div class="page-intro">
-          <div><h2 id="results-heading" data-i18n="results.title">Screening results</h2><p data-i18n="results.intro">A ranked view of your inputs — with the uncertainty deliberately kept in frame.</p></div>
-          <div class="page-actions"><span class="muted-small" id="computed-at"></span><button class="btn btn-soft" id="recalculate-btn"><svg class="icon"><use href="#i-refresh"></use></svg><span data-i18n="results.recalculate">Recalculate</span></button><button class="btn btn-primary" id="results-export-btn"><svg class="icon"><use href="#i-download"></use></svg><span data-i18n="universe.export">Export ranked CSV</span></button></div>
+          <div><h2 id="results-heading" data-i18n="results.title">نتایج غربالگری</h2><p data-i18n="results.intro">نمایی رتبهبندیشده از ورودیهای شما — با حفظ آگاهانه عدمقطعیت در کنار آن.</p></div>
+          <div class="page-actions"><span class="muted-small" id="computed-at"></span><button class="btn btn-soft" id="recalculate-btn"><svg class="icon"><use href="#i-refresh"></use></svg><span data-i18n="results.recalculate">محاسبه دوباره</span></button><button class="btn btn-primary" id="results-export-btn"><svg class="icon"><use href="#i-download"></use></svg><span data-i18n="universe.export">خروجی CSV رتبهبندی</span></button></div>
         </div>
 
         <div class="kpi-grid" id="results-kpis" aria-live="polite"></div>
 
         <div class="grid grid-2-1">
           <section class="card" aria-labelledby="dist-title">
-            <div class="card-head"><div><h3 id="dist-title" data-i18n="results.distribution">Score distribution</h3><p class="card-sub" data-i18n="results.distributionSub">How complete rows spread across the 0–100 scale.</p></div></div>
+            <div class="card-head"><div><h3 id="dist-title" data-i18n="results.distribution">توزیع امتیازها</h3><p class="card-sub" data-i18n="results.distributionSub">پراکندگی ردیفهای کامل در مقیاس ۰ تا ۱۰۰.</p></div></div>
             <div id="distribution-chart" class="chart-host"></div>
-            <p class="chart-caption" data-i18n="results.distributionNote">Bands are decision prompts, not buy/sell thresholds. A one-point change can move a row between bands.</p>
+            <p class="chart-caption" data-i18n="results.distributionNote">ردهها یادآور تصمیماند، نه آستانه خرید و فروش. تغییر یک امتیاز میتواند رده را جابهجا کند.</p>
+            <div class="score-spectrum" id="score-spectrum"></div>
           </section>
           <section class="card" aria-labelledby="bands-title">
-            <div class="card-head"><div><h3 id="bands-title" data-i18n="results.bands">Interpretation bands</h3><p class="card-sub" data-i18n="results.bandsSub">Neutral, text-first labels.</p></div></div>
+            <div class="card-head"><div><h3 id="bands-title" data-i18n="results.bands">ردههای تفسیر</h3><p class="card-sub" data-i18n="results.bandsSub">برچسبهای خنثی و مبتنی بر متن.</p></div></div>
             <div id="bands-list" class="bands-list"></div>
           </section>
         </div>
 
         <section class="card" aria-labelledby="rank-title">
           <div class="card-head rank-head">
-            <div><h3 id="rank-title" data-i18n="results.rankedList">Ranked universe</h3><p class="card-sub" data-i18n="results.rankedListSub">Select any row to inspect its factor profile and counter-evidence.</p></div>
+            <div><h3 id="rank-title" data-i18n="results.rankedList">جامعه رتبهبندیشده</h3><p class="card-sub" data-i18n="results.rankedListSub">هر ردیف را برای دیدن نیمرخ عاملها و شواهد مخالف انتخاب کنید.</p></div>
             <div class="rank-filters">
-              <label class="search-field"><svg class="icon"><use href="#i-search"></use></svg><input type="search" id="results-search" data-i18n-placeholder="common.search" placeholder="Search tickers…" data-i18n-aria-label="common.search" aria-label="Search results"></label>
-              <div class="filter-chips" id="status-filters" role="group" data-i18n-aria-label="results.filterAria" aria-label="Filter by status"></div>
+              <label class="search-field"><svg class="icon"><use href="#i-search"></use></svg><input type="search" id="results-search" data-i18n-placeholder="common.search" placeholder="جستجوی نماد…" data-i18n-aria-label="common.search" aria-label="جستجوی نماد…"></label>
+              <div class="filter-chips" id="status-filters" role="group" data-i18n-aria-label="results.filterAria" aria-label="فیلتر بر اساس وضعیت"></div>
             </div>
           </div>
           <div id="ranked-list" class="ranked-list" aria-live="polite"></div>
-          <p class="empty-state" id="ranked-empty" hidden data-i18n="results.noRows">No rows match. Try a different filter or add data in the Universe view.</p>
+          <p class="empty-state" id="ranked-empty" hidden data-i18n="results.noRows">هیچ ردیفی مطابقت ندارد. فیلتر دیگری بیازمایید یا در بخش جامعه نمادها داده بیفزایید.</p>
         </section>
 
         <section class="card sensitivity-card" aria-labelledby="sens-title">
-          <div class="card-head"><div><h3 id="sens-title" data-i18n="results.sensitivity">Weight sensitivity check</h3><p class="card-sub" data-i18n="results.sensitivitySub">A robustness test against overconfidence in your chosen weights.</p></div><svg class="icon notice-icon"><use href="#i-layers"></use></svg></div>
+          <div class="card-head"><div><h3 id="sens-title" data-i18n="results.sensitivity">آزمون حساسیت وزنها</h3><p class="card-sub" data-i18n="results.sensitivitySub">آزمونی برای مقابله با اطمینان بیشازحد به وزنهای انتخابی شما.</p></div><svg class="icon notice-icon"><use href="#i-layers"></use></svg></div>
           <div class="sensitivity-body"><p id="sensitivity-summary" class="sensitivity-summary"></p><div id="sensitivity-list" class="movers-list"></div></div>
         </section>
       </section>
@@ -253,50 +280,50 @@
       <!-- ═══════════════════ SCENARIO ═══════════════════ -->
       <section class="view" id="view-scenario" data-view="scenario" aria-labelledby="scenario-heading" hidden>
         <div class="page-intro">
-          <div><h2 id="scenario-heading" data-i18n="scenario.title">Scenario lab</h2><p data-i18n="scenario.intro">Explore the consequences of assumptions — not predictions of what will happen.</p></div>
-          <span class="chip chip-warning"><svg class="icon"><use href="#i-alert"></use></svg><span data-i18n="scenario.assumptionChip">ASSUMPTIONS, NOT FORECASTS</span></span>
+          <div><h2 id="scenario-heading" data-i18n="scenario.title">آزمایشگاه سناریو</h2><p data-i18n="scenario.intro">پیامد فرضها را کاوش کنید — نه پیشبینی آنچه رخ خواهد داد.</p></div>
+          <span class="chip chip-warning"><svg class="icon"><use href="#i-alert"></use></svg><span data-i18n="scenario.assumptionChip">فرضها، نه پیشبینی</span></span>
         </div>
 
         <div class="grid grid-1-2 scenario-grid">
           <section class="card" aria-labelledby="sim-form-title">
-            <div class="card-head"><div><h3 id="sim-form-title" data-i18n="scenario.assumptions">Assumptions</h3><p class="card-sub" data-i18n="scenario.assumptionsSub">Every input below is yours. Nothing is estimated from market data.</p></div></div>
-            <div class="preset-row" role="group" data-i18n-aria-label="scenario.presetsAria" aria-label="Assumption presets">
-              <button class="btn btn-tiny preset" data-preset="cautious" data-i18n="scenario.presetCautious">Cautious</button>
-              <button class="btn btn-tiny preset is-selected" data-preset="base" data-i18n="scenario.presetBase">Base</button>
-              <button class="btn btn-tiny preset" data-preset="stressed" data-i18n="scenario.presetStressed">Stressed</button>
+            <div class="card-head"><div><h3 id="sim-form-title" data-i18n="scenario.assumptions">فرضها</h3><p class="card-sub" data-i18n="scenario.assumptionsSub">همه ورودیهای زیر از شماست. هیچ چیز از داده بازار برآورد نمیشود.</p></div></div>
+            <div class="preset-row" role="group" data-i18n-aria-label="scenario.presetsAria" aria-label="الگوهای فرض">
+              <button class="btn btn-tiny preset" data-preset="cautious" data-i18n="scenario.presetCautious">محتاطانه</button>
+              <button class="btn btn-tiny preset is-selected" data-preset="base" data-i18n="scenario.presetBase">پایه</button>
+              <button class="btn btn-tiny preset" data-preset="stressed" data-i18n="scenario.presetStressed">تحت فشار</button>
             </div>
             <div class="form-grid">
-              <label class="field"><span class="field-label" data-i18n="scenario.capital">Initial capital</span><input class="control" type="number" id="sim-capital" value="100000000" min="1" step="1000000" inputmode="numeric"><span class="field-help" data-i18n="scenario.capitalHelp">Any currency unit; the same unit is used in outputs.</span></label>
-              <label class="field"><span class="field-label" data-i18n="scenario.return">Assumed annual return (%)</span><input class="control" type="number" id="sim-return" value="15" min="-99" max="200" step="1"><span class="field-help" data-i18n="scenario.returnHelp">A hypothetical drift, not an expected return.</span></label>
-              <label class="field"><span class="field-label" data-i18n="scenario.volatility">Annual volatility (%)</span><input class="control" type="number" id="sim-volatility" value="30" min="0" max="300" step="1"><span class="field-help" data-i18n="scenario.volatilityHelp">Higher volatility widens the range of outcomes.</span></label>
-              <label class="field"><span class="field-label" data-i18n="scenario.years">Horizon (years)</span><input class="control" type="number" id="sim-years" value="1" min="0.05" max="30" step="0.5"><span class="field-help" data-i18n="scenario.yearsHelp">Longer horizons compound assumptions.</span></label>
-              <label class="field"><span class="field-label" data-i18n="scenario.simulations">Simulations</span><input class="control" type="number" id="sim-simulations" value="10000" min="100" max="50000" step="1000"><span class="field-help" data-i18n="scenario.simulationsHelp">More paths stabilise the chart, not the assumptions.</span></label>
-              <label class="field"><span class="field-label" data-i18n="scenario.seed">Random seed</span><input class="control" type="number" id="sim-seed" value="42" min="0" max="999999" step="1"><span class="field-help" data-i18n="scenario.seedHelp">The same seed reproduces the same chart.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.capital">سرمایه اولیه</span><input class="control" type="number" id="sim-capital" value="100000000" min="1" step="1000000" inputmode="numeric"><span class="field-help" data-i18n="scenario.capitalHelp">هر واحد پولی؛ همان واحد در خروجیها استفاده میشود.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.return">بازده سالانه فرضی (٪)</span><input class="control" type="number" id="sim-return" value="15" min="-99" max="200" step="1"><span class="field-help" data-i18n="scenario.returnHelp">یک روند فرضی، نه بازده مورد انتظار.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.volatility">نوسان سالانه (٪)</span><input class="control" type="number" id="sim-volatility" value="30" min="0" max="300" step="1"><span class="field-help" data-i18n="scenario.volatilityHelp">نوسان بیشتر، دامنه نتایج را گستردهتر میکند.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.years">افق زمانی (سال)</span><input class="control" type="number" id="sim-years" value="1" min="0.05" max="30" step="0.5"><span class="field-help" data-i18n="scenario.yearsHelp">افق بلندتر، فرضها را ترکیب میکند.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.simulations">تعداد شبیهسازی</span><input class="control" type="number" id="sim-simulations" value="10000" min="100" max="50000" step="1000"><span class="field-help" data-i18n="scenario.simulationsHelp">مسیرهای بیشتر نمودار را پایدار میکند، نه فرضها را.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.seed">عدد تصادفی پایه</span><input class="control" type="number" id="sim-seed" value="42" min="0" max="999999" step="1"><span class="field-help" data-i18n="scenario.seedHelp">عدد یکسان، نمودار یکسان بازتولید میکند.</span></label>
             </div>
-            <button class="btn btn-primary btn-block" id="run-sim-btn"><svg class="icon"><use href="#i-flask"></use></svg><span data-i18n="scenario.run">Run simulation</span></button>
+            <button class="btn btn-primary btn-block" id="run-sim-btn"><svg class="icon"><use href="#i-flask"></use></svg><span data-i18n="scenario.run">اجرای شبیهسازی</span></button>
             <div class="assumption-audit">
-              <h4 data-i18n="scenario.auditTitle">Before reading the chart</h4>
+              <h4 data-i18n="scenario.auditTitle">پیش از خواندن نمودار</h4>
               <ul id="audit-list"></ul>
             </div>
           </section>
 
           <div class="scenario-results">
             <section class="card" id="sim-empty-card" aria-labelledby="sim-empty-title">
-              <div class="sim-empty"><div class="sim-empty-icon"><svg class="icon"><use href="#i-flask"></use></svg></div><h3 id="sim-empty-title" data-i18n="scenario.emptyTitle">No scenario yet</h3><p data-i18n="scenario.emptyBody">Set your assumptions and run the simulation. The chart will show the full spread of outcomes — including the uncomfortable tail.</p></div>
+              <div class="sim-empty"><div class="sim-empty-icon"><svg class="icon"><use href="#i-flask"></use></svg></div><h3 id="sim-empty-title" data-i18n="scenario.emptyTitle">هنوز سناریویی نیست</h3><p data-i18n="scenario.emptyBody">فرضها را تنظیم کنید و شبیهسازی را اجرا کنید. نمودار، گسترده کامل نتایج — از جمله دنباله ناخوشایند — را نشان خواهد داد.</p></div>
             </section>
             <section class="card" id="sim-result-card" hidden aria-labelledby="sim-result-title">
-              <div class="card-head"><div><h3 id="sim-result-title" data-i18n="scenario.outcomes">Distribution of terminal values</h3><p class="card-sub" data-i18n="scenario.outcomesSub">Log-normal paths under the assumptions you chose.</p></div><span class="chip chip-outline" id="sim-count-chip"></span></div>
+              <div class="card-head"><div><h3 id="sim-result-title" data-i18n="scenario.outcomes">توزیع ارزشهای پایانی</h3><p class="card-sub" data-i18n="scenario.outcomesSub">مسیرهای لognormal تحت فرضهایی که انتخاب کردید.</p></div><span class="chip chip-outline" id="sim-count-chip"></span></div>
               <div id="simulation-chart" class="chart-host chart-host-tall"></div>
               <p class="chart-caption" id="sim-chart-caption"></p>
               <div class="sim-kpis" id="sim-kpis"></div>
             </section>
             <section class="card" id="sim-sens-card" hidden aria-labelledby="sim-sens-title">
-              <div class="card-head"><div><h3 id="sim-sens-title" data-i18n="scenario.sensTitle">Assumption sensitivity</h3><p class="card-sub" data-i18n="scenario.sensSub">The same seed with volatility halved and increased by half.</p></div></div>
+              <div class="card-head"><div><h3 id="sim-sens-title" data-i18n="scenario.sensTitle">حساسیت به فرضها</h3><p class="card-sub" data-i18n="scenario.sensSub">همان عدد پایه با نصف و یکونیم برابر نوسان.</p></div></div>
               <div class="table-scroll"><table class="data-table compact-table" id="sim-sens-table"></table></div>
             </section>
             <section class="card caveat-card" id="sim-caveat-card" hidden>
               <svg class="icon"><use href="#i-alert"></use></svg>
-              <div><strong data-i18n="scenario.caveatTitle">This is not the probability that a stock rises.</strong><p data-i18n="scenario.caveatBody">The model assumes constant drift, constant volatility and normally distributed shocks. Real markets have jumps, regime changes, costs and liquidity constraints. Until parameters are calibrated against valid historical data, these numbers are illustrative scenarios only.</p></div>
+              <div><strong data-i18n="scenario.caveatTitle">این احتمال رشد قیمت یک سهم نیست.</strong><p data-i18n="scenario.caveatBody">مدل، روند ثابت، نوسان ثابت و شوکهای نرمال را فرض میکند. بازار واقعی جهش، تغییر رژیم، هزینه و محدودیت نقدشوندگی دارد. تا زمانی که پارامترها با داده تاریخی معتبر کالیبره نشوند، این اعداد فقط سناریوهای نمایشیاند.</p></div>
             </section>
           </div>
         </div>
@@ -304,52 +331,52 @@
 
       <!-- ═══════════════════ METHOD ═══════════════════ -->
       <section class="view" id="view-method" data-view="method" aria-labelledby="method-heading" hidden>
-        <div class="page-intro"><div><h2 id="method-heading" data-i18n="method.title">Method, limits &amp; design</h2><p data-i18n="method.intro">No hidden logic. Everything below describes exactly what the tool does and what it deliberately does not do.</p></div></div>
+        <div class="page-intro"><div><h2 id="method-heading" data-i18n="method.title">روش، محدودیتها و طراحی</h2><p data-i18n="method.intro">هیچ منطق پنهانی وجود ندارد. هرچه در ادامه میآید دقیقاً توضیح میدهد ابزار چه میکند و آگاهانه چه نمیکند.</p></div></div>
 
         <div class="grid grid-1-1">
           <section class="card" aria-labelledby="formula-title">
-            <div class="card-head"><div><h3 id="formula-title" data-i18n="method.formulaTitle">The formula</h3><p class="card-sub" data-i18n="method.formulaSub">A weighted average of six 0–100 inputs.</p></div></div>
+            <div class="card-head"><div><h3 id="formula-title" data-i18n="method.formulaTitle">فرمول</h3><p class="card-sub" data-i18n="method.formulaSub">میانگین وزنی شش ورودی ۰ تا ۱۰۰.</p></div></div>
             <div class="formula-box" dir="ltr">S = <span class="formula-sum">Σ</span> ( w<sub>i</sub> × x<sub>i</sub> ) &nbsp;·&nbsp; x<sub>i</sub> ∈ [0, 100]</div>
-            <p data-i18n="method.formulaBody">Weights are normalised to sum to 1 before scoring. If any factor is missing, the row is marked incomplete and no score is produced — missing evidence is never imputed and never treated as zero.</p>
+            <p data-i18n="method.formulaBody">پیش از امتیازدهی، وزنها بهگونهای نرمال میشوند که مجموعشان ۱ شود. اگر عاملی ناقص باشد، ردیف ناقص علامت میخورد و امتیازی تولید نمیشود — شواهد ناقص هرگز تخمین زده نمیشوند و هرگز صفر فرض نمیشوند.</p>
             <div class="formula-example" id="formula-example"></div>
           </section>
           <section class="card" aria-labelledby="factor-title">
-            <div class="card-head"><div><h3 id="factor-title" data-i18n="method.factorTitle">Factors &amp; default weights</h3><p class="card-sub" data-i18n="method.factorSub">Hover or focus a row for the debiasing question.</p></div></div>
+            <div class="card-head"><div><h3 id="factor-title" data-i18n="method.factorTitle">عاملها و وزنهای پیشفرض</h3><p class="card-sub" data-i18n="method.factorSub">هر عامل پرسشی دارد که برای آشکار کردن شواهد مخالف طراحی شده است.</p></div></div>
             <div id="method-factors" class="method-factors"></div>
           </section>
         </div>
 
         <section class="card" aria-labelledby="limits-title">
-          <div class="card-head"><div><h3 id="limits-title" data-i18n="method.limitsTitle">Limitations &amp; ethical guardrails</h3><p class="card-sub" data-i18n="method.limitsSub">These statements travel with the results into any exported file’s context.</p></div></div>
+          <div class="card-head"><div><h3 id="limits-title" data-i18n="method.limitsTitle">محدودیتها و مرزهای اخلاقی</h3><p class="card-sub" data-i18n="method.limitsSub">این توضیحات همراه نتایج، به بافت هر فایل خروجی نیز منتقل میشود.</p></div></div>
           <ol class="limits-list" id="method-limitations"></ol>
         </section>
 
         <section class="card" aria-labelledby="design-title">
-          <div class="card-head"><div><h3 id="design-title" data-i18n="method.designTitle">Design system &amp; psychological rationale</h3><p class="card-sub" data-i18n="method.designSub">The interface is built to slow down judgement, not to accelerate conviction.</p></div></div>
+          <div class="card-head"><div><h3 id="design-title" data-i18n="method.designTitle">سیستم طراحی و منطق روانشناختی</h3><p class="card-sub" data-i18n="method.designSub">رابط برای کُند کردن قضاوت ساخته شده، نه شتاب دادن به یقین.</p></div></div>
           <div class="design-grid" id="design-principles"></div>
         </section>
 
         <div class="grid grid-1-1">
           <section class="card" aria-labelledby="a11y-title">
-            <div class="card-head"><div><h3 id="a11y-title" data-i18n="method.a11yTitle">Accessibility &amp; privacy</h3><p class="card-sub" data-i18n="method.a11ySub">Usable by more people, in more conditions.</p></div></div>
+            <div class="card-head"><div><h3 id="a11y-title" data-i18n="method.a11yTitle">دسترسیپذیری و حریم خصوصی</h3><p class="card-sub" data-i18n="method.a11ySub">قابل استفاده برای افراد بیشتر، در شرایط بیشتر.</p></div></div>
             <ul class="tick-list" id="a11y-list"></ul>
           </section>
           <section class="card" aria-labelledby="cli-title">
-            <div class="card-head"><div><h3 id="cli-title" data-i18n="method.cliTitle">Still works from the CLI</h3><p class="card-sub" data-i18n="method.cliSub">The original script remains the analytical source of truth.</p></div></div>
+            <div class="card-head"><div><h3 id="cli-title" data-i18n="method.cliTitle">همچنان از خط فرمان کار میکند</h3><p class="card-sub" data-i18n="method.cliSub">اسکریپت اصلی، مرجع تحلیلی باقی میماند.</p></div></div>
             <pre class="code-block" dir="ltr"><code>pip install -r requirements.txt
 python app.py                 # web interface on :5000
 python aqx_tirole_omega.py \
   --input universe_input.csv \
   --output aqx_ranked_output.csv</code></pre>
-            <p class="card-sub" data-i18n="method.cliBody">The web layer imports the same scoring and simulation functions; there is no second implementation of the maths.</p>
+            <p class="card-sub" data-i18n="method.cliBody">لایه وب همان توابع امتیازدهی و شبیهسازی را وارد میکند؛ پیادهسازی دومی از ریاضیات وجود ندارد.</p>
           </section>
         </div>
       </section>
     </main>
 
     <footer class="app-footer">
-      <span data-i18n="footer.disclaimer">Educational research prototype · Not investment advice · No live market data</span>
-      <span>AQx–Tirole Omega <span id="footer-version">v1.1.0</span> · <span data-i18n="footer.builtWith">Flask + vanilla HTML/CSS/JS</span></span>
+      <span data-i18n="footer.disclaimer">نمونه اولیه پژوهشی و آموزشی · توصیه سرمایهگذاری نیست · بدون داده زنده بازار</span>
+      <span>AQx–Tirole Omega <span id="footer-version">v1.2.0</span> · <span data-i18n="footer.builtWith">Flask و HTML/CSS/JS خالص</span></span>
     </footer>
   </div>
 </div>
@@ -358,17 +385,17 @@ python aqx_tirole_omega.py \
 <div class="drawer-scrim" id="drawer-scrim" hidden></div>
 <aside class="drawer" id="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
   <div class="drawer-head">
-    <div><span class="eyebrow" data-i18n="drawer.eyebrow">FACTOR PROFILE</span><h2 id="drawer-title" dir="auto">—</h2></div>
-    <button class="icon-btn" id="drawer-close" data-i18n-aria-label="a11y.close" aria-label="Close"><svg class="icon"><use href="#i-close"></use></svg></button>
+    <div><span class="eyebrow" data-i18n="drawer.eyebrow">نیمرخ عاملها</span><h2 id="drawer-title" dir="auto">—</h2></div>
+    <button class="icon-btn" id="drawer-close" data-i18n-aria-label="a11y.close" aria-label="بستن"><svg class="icon"><use href="#i-close"></use></svg></button>
   </div>
   <div class="drawer-body" id="drawer-body"></div>
 </aside>
 
 <!-- ───────────────────────── Confirm dialog ───────────────────────── -->
 <dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title">
-  <h3 id="confirm-title" data-i18n="dialog.title">Are you sure?</h3>
+  <h3 id="confirm-title" data-i18n="dialog.title">مطمئن هستید؟</h3>
   <p id="confirm-message"></p>
-  <div class="dialog-actions"><button class="btn btn-soft" id="confirm-cancel" data-i18n="common.cancel">Cancel</button><button class="btn btn-danger" id="confirm-ok" data-i18n="common.confirm">Confirm</button></div>
+  <div class="dialog-actions"><button class="btn btn-soft" id="confirm-cancel" data-i18n="common.cancel">انصراف</button><button class="btn btn-danger" id="confirm-ok" data-i18n="common.confirm">تأیید</button></div>
 </dialog>
 
 <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false"></div>

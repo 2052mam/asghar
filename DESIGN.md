@@ -1,12 +1,33 @@
 # Design system & psychological rationale
 
-**AQx–Tirole Omega v1.1** · Flask + vanilla HTML/CSS/JS
+**AQx–Tirole Omega v1.2** · Flask + vanilla HTML/CSS/JS
 
 This document explains *why* the interface looks and behaves the way it does.
 The product domain is investment research, an area where interfaces can easily
 manufacture false confidence. The design goal is therefore not "maximise
 engagement" but **calibrate trust**: show the number, show how it was produced,
 show what could be wrong with it, and make the absence of evidence visible.
+
+## 0. What changed in the v1.2 design revision
+
+Persian is now the **default document language and direction** (`<html lang="fa"
+dir="rtl">`), with a visible `فا | EN` segmented switch; the browser locale no
+longer overrides the product's primary audience. The visual system was
+strengthened without weakening the psychological guardrails:
+
+| Upgrade | Why it is engaging *and* responsible |
+| --- | --- |
+| Locally bundled **Vazirmatn** (Persian) and **Plus Jakarta Sans** (Latin) variable fonts, with their OFL licences | Persian text finally has a purpose-built typeface instead of a system fallback; no CDN request, no tracking, no FOUT dependency. |
+| A signature **six-factor colour palette** | Colour becomes a consistent *identity* cue (competition, valuation, earnings, growth, momentum, risk) rather than a good/bad signal. Status still uses separate neutral tones with text. |
+| Illustrated **aurora hero** with a generated glass-ribbon artwork, a low-opacity girih (Persian geometric) pattern, metric tiles and a floating signature card | Gives the product a memorable first impression and a sense of place, while remaining purely decorative (no fake charts or implied live data). |
+| Drifting gradient canvas, glass surfaces, gradient-topped cards, glow accents | Depth and hierarchy replace flat boxes; contrast and text legibility are preserved in both themes. |
+| Gradient SVG charts with grow-in animation, area fills, KPI sparklines, per-row factor sparklines, a clickable band spectrum | More information per glance; each embellishment is tied to real data, never random decoration. |
+| A three-step **workflow narrative** and sidebar completeness ring | Turns a passive dashboard into a guided research ritual; the workflow explicitly ends with "write the counter-case". |
+| Staggered card entrance, subtle pointer parallax, floating card, animated meters | Deliberate motion signals freshness without urgency; all animation is disabled under `prefers-reduced-motion`. |
+
+The hero is intentionally dark in **both** themes, so the illustrated identity
+stays consistent; its local token overrides keep all text above AA contrast on
+the artwork overlay.
 
 ---
 
@@ -54,8 +75,10 @@ behavioural-decision research, not claims of clinical efficacy):
 
 ### Colour
 
-Two complete token sets (`dark` default, `light` toggle) live in
-`static/css/styles.css` as CSS custom properties. Dark uses a deep indigo base
+Two complete token sets (`dark` default, `light` one-click toggle) live in
+`static/css/styles.css` as CSS custom properties. Dark is the deliberate
+default — it carries the aurora identity — and a saved light choice is honoured.
+Dark uses a deep indigo base
 (`#090e1b`) with mint (`#6ee7c0`), periwinkle (`#98a0ff`) and amber (`#ffc978`)
 accents. Light uses `#f2f5fb` surfaces with darker equivalents of the same
 hues to preserve contrast.
@@ -68,10 +91,20 @@ meaning never depends on colour alone.
 All tints are derived with `color-mix(in srgb, …)`, which keeps light/dark
 consistency from a single token and avoids a palette that drifts between themes.
 
+A second, independent set of six **factor identity colours** (`--f-competition`
+through `--f-risk`) is used for table headers, slider tracks, weight bars,
+radar dots, ranked-row sparklines and the legend. These are deliberately *not*
+performance colours: they never mean "good" or "bad", so they cannot be misread
+as buy/sell signals. The light theme darkens the same hues to keep contrast.
+
 ### Typography
 
-- System font stack: Inter/Segoe UI/Roboto/Noto Sans Arabic/Tahoma; a separate
-  Persian-first stack is applied via `html[lang="fa"]`.
+- **Vazirmatn Variable** (100–900) is bundled locally for Persian and Arabic
+  script ranges; **Plus Jakarta Sans Variable** (200–800) handles Latin. Both
+  are SIL OFL; licence texts ship in `static/fonts/`. `html[lang="fa"]` swaps the
+  stack so Persian is never rendered with a Latin-first fallback.
+- Persian headings use `letter-spacing: 0` — negative tracking breaks cursive
+  joins — while Latin headings use tight tracking. Display weights are 700–800.
 - Tabular numerals (`font-variant-numeric: tabular-nums`) and a monospace stack
   for every score, weight and currency value, so columns align and digits are
   distinguishable.
@@ -92,9 +125,12 @@ consistency from a single token and avoids a palette that drifts between themes.
 
 ### Illustration
 
-The hero uses a CSS/SVG "orbit" of the six factor abbreviations around Ω —
-a structural metaphor for a weighted system. No stock photography, no generic
-fintech people, no decorative candlestick charts that imply real data.
+The hero uses a generated abstract glass-ribbon artwork (no text, no logo), a
+low-opacity girih geometric pattern, and a floating "factor signature" card
+whose six bars use the real applied weights. It is a structural metaphor for a
+weighted system: no stock photography, no generic fintech people, no decorative
+candlestick charts that imply real market data. The artwork is mirrored in RTL
+so the quiet negative space always sits behind the copy.
 
 ---
 
@@ -191,8 +227,13 @@ Targeting WCAG 2.2 AA-oriented practice:
 
 `pytest -q` covers the API, validation, import/export and CLI. `npm run smoke`
 (with `jsdom`) executes the real frontend modules against the live API and
-checks rendering, navigation, charts, the detail drawer, scenario lab,
-EN↔FA/RTL switching, theme switching and live cell editing. Manual checks for
-the interface: light/dark theme switching, 360px / 768px / 1440px widths,
+checks the Persian/RTL default, the language switch, the illustrated hero and
+workflow, factor palette, sparklines, band spectrum, rendering, navigation,
+charts, the detail drawer, scenario lab, theme switching and live cell editing.
+Manual checks for the interface: light/dark theme switching, 360px / 768px / 1440px widths,
 keyboard-only navigation, score-cell validation, CSV round-trip, drawer focus
-management and reduced-motion mode.
+management and reduced-motion mode. The v1.2 revision was additionally verified
+with real headless-Chromium screenshots at 1440px and 390px in both themes and
+both languages — including the illustrated hero, RTL chart labels, band ranges
+and the factor-coloured radar drawer. `docs/preview.png` is one of those
+captures.

@@ -87,15 +87,22 @@ try {
   await import(pathToFileURL(path.join(ROOT, 'static/js/app.js')).href + `?v=${Date.now()}`);
   await waitFor(() => window.document.querySelector('#overview-chart svg'), 'initial render');
 
-  console.log('\nInitial render (EN / dark / overview)');
-  assert(window.document.documentElement.lang === 'en', 'English is default');
+  console.log('\nInitial render (FA / RTL / dark / overview)');
+  assert(window.document.documentElement.lang === 'fa', 'Persian is the default language');
+  assert(window.document.documentElement.dir === 'rtl', 'RTL is the default direction');
+  assert(window.document.querySelector('[data-lang="fa"]').classList.contains('is-active'), 'language switch shows Persian active');
   assert(window.document.documentElement.dataset.theme === 'dark', 'dark theme applied');
   assert(window.document.querySelectorAll('#overview-kpis .kpi').length === 4, '4 KPI cards');
+  assert(window.document.querySelectorAll('#overview-kpis .kpi-spark').length >= 2, 'KPI sparklines');
   assert(window.document.querySelectorAll('#overview-chart svg rect.chart-bar').length > 0, 'ranking bars');
   assert(window.document.querySelector('#completeness-chart svg'), 'completeness donut');
   assert(window.document.querySelectorAll('#coverage-list .coverage-row').length === 6, '6 coverage rows');
-  assert(window.document.querySelector('#overview-warnings').textContent.includes('synthetic'), 'synthetic-data warning');
+  assert(/ساختگی|synthetic/.test(window.document.querySelector('#overview-warnings').textContent), 'synthetic-data warning');
   assert(window.document.querySelector('#nav-row-count').textContent === '14', '14 demo rows');
+  assert(window.document.querySelectorAll('.workflow-steps .workflow-step').length === 3, '3 workflow steps');
+  assert(window.document.querySelectorAll('#factor-legend .factor-pill').length === 6, '6 factor legend pills');
+  assert(window.document.querySelectorAll('#hero-float-bars .hero-float-bar').length === 6, '6 hero signature bars');
+  assert(window.document.querySelectorAll('#sidebar-progress-ring span').length === 1, 'sidebar completeness ring');
   assert(window.document.querySelectorAll('#design-principles .design-principle').length === 6, '6 design principles');
   assert(window.document.querySelectorAll('#method-factors .method-factor').length === 6, '6 method factors');
   assert(window.document.querySelectorAll('#bands-list .band-row').length === 5, '5 interpretation bands');
@@ -109,6 +116,8 @@ try {
   assert(window.document.querySelectorAll('#ranked-list .rank-row').length === 14, '14 ranked rows');
   assert(window.document.querySelectorAll('#distribution-chart svg rect.chart-bar').length > 0, 'score histogram');
   assert(window.document.querySelectorAll('#results-kpis .kpi').length === 4, '4 results KPIs');
+  assert(window.document.querySelectorAll('#score-spectrum .spectrum-seg').length === 4, '4 score-band spectrum segments');
+  assert(window.document.querySelectorAll('#ranked-list .factor-spark').length === 14, 'factor sparklines in ranked rows');
   assert(window.document.querySelectorAll('#sensitivity-list .mover-row').length >= 1, 'sensitivity check');
 
   console.log('\nDetail drawer');
@@ -132,12 +141,14 @@ try {
   assert(!window.document.querySelector('#sim-caveat-card').hidden, 'caveat visible');
 
   console.log('\nLanguage, theme, live editing');
-  click('#lang-btn');
-  assert(window.document.documentElement.dir === 'rtl', 'RTL direction');
-  assert(window.document.documentElement.lang === 'fa', 'Persian language');
+  click('[data-lang="en"]');
+  assert(window.document.documentElement.dir === 'ltr', 'LTR direction in English');
+  assert(window.document.documentElement.lang === 'en', 'English language selected');
+  assert(window.document.querySelector('[data-lang="en"]').classList.contains('is-active'), 'language switch shows English active');
   assert(window.document.querySelectorAll('#universe-body tr').length === 14, 'table survives language switch');
-  click('#lang-btn');
-  assert(window.document.documentElement.dir === 'ltr', 'LTR direction restored');
+  click('[data-lang="fa"]');
+  assert(window.document.documentElement.dir === 'rtl', 'RTL direction restored');
+  assert(window.document.documentElement.lang === 'fa', 'Persian restored');
   click('#theme-btn');
   assert(window.document.documentElement.dataset.theme === 'light', 'light theme');
 

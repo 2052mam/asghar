@@ -3,7 +3,7 @@
 # Input CSV: one row per ticker; scores are 0..100.
 # Missing scores are left missing and the final score is not computed for incomplete rows.
 #
-# v1.1 (GUI edition): `score_universe` and `monte_carlo_terminal_values` accept
+# GUI edition (v1.1+): `score_universe` and `monte_carlo_terminal_values` accept
 # optional parameters so the Flask interface can reuse exactly the same maths as
 # the CLI. Default behaviour and CLI output are unchanged.
 

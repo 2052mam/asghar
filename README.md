@@ -1,16 +1,31 @@
-# AQx–Tirole Omega · v1.1
+# AQx–Tirole Omega · v1.2
 
 > **Educational research prototype. Not investment advice.** No live market or
 > Codal data is fetched, no symbol is ranked automatically, and no output is a
 > buy/sell signal or a calibrated probability. Every score in the application
 > comes from data you enter or import.
 
+![Overview of the Persian workspace](docs/preview.png)
+
 This repository started as a Persian-language CLI prototype for a six-factor
-equity screen (`aqx_tirole_omega.py`). Version 1.1 adds a complete,
-**bilingual (English / فارسی), fully responsive Flask web interface** built with
-plain HTML, CSS and JavaScript — no frontend build step, no CDN, no external
-fonts, no analytics. The original CLI still works and remains the analytical
-source of truth.
+equity screen (`aqx_tirole_omega.py`). Version 1.2 adds a complete,
+**Persian-first (فارسی / English), fully responsive Flask web interface** built
+with plain HTML, CSS and JavaScript — no frontend build step, no CDN, no remote
+fonts, no analytics. Persian/RTL is the default; a segmented language switch
+remembers an English preference. The original CLI still works and remains the
+analytical source of truth.
+
+### Design language (v1.2)
+
+The interface uses a locally bundled **Vazirmatn** variable font for Persian and
+**Plus Jakarta Sans** for Latin (SIL OFL, licenses in `static/fonts/`), a
+signature six-factor colour palette, an illustrated aurora hero with a subtle
+Persian geometric (girih) pattern, glass surfaces over a drifting gradient
+canvas, gradient SVG charts with grow-in animation, KPI sparklines, a
+three-step workflow narrative, a clickable band spectrum and per-row factor
+sparklines. Motion is subtle, respects `prefers-reduced-motion`, and the
+uncertainty-first psychology of the original build is unchanged. See
+[DESIGN.md](DESIGN.md) for the full rationale.
 
 ---
 
@@ -51,10 +66,12 @@ server, e.g. `pip install waitress && waitress-serve --host 0.0.0.0 --port 5000 
 
 Other behaviours:
 
-- **Bilingual + RTL.** One click switches EN ↔ FA; direction, layout, labels and
-  charts follow. Numeric cells stay LTR for legibility. Language, theme and the
-  workspace persist in `localStorage`.
-- **Light and dark themes**, respecting the OS preference on first load.
+- **Persian by default, bilingual + RTL.** Persian/RTL loads first; one click on
+  the `فا | EN` switch changes language, direction, labels and charts. Numeric
+  cells stay LTR for legibility. Language, theme and the workspace persist in
+  `localStorage`.
+- **Dark by default**, with a one-click light theme that is remembered. The hero
+  stays dark in both themes so the illustrated identity remains consistent.
 - **Local-first.** Your rows never leave the browser except for the scoring and
   export requests you trigger; there is no account, no database and no tracking.
 - **Auto-recalculation** is debounced, so typing in the score table is never
@@ -134,8 +151,10 @@ aqx_tirole_omega.py        Original analytical core (scoring + Monte Carlo)
 templates/index.html       Semantic bilingual app shell + icon sprite
 static/css/styles.css      Design tokens, components, RTL, responsive, a11y
 static/js/app.js           State, routing, rendering, events
-static/js/i18n.js          EN/FA dictionary and DOM binding
+static/js/i18n.js          FA/EN dictionary and DOM binding (Persian default)
 static/js/charts.js        Dependency-free SVG charts
+static/fonts/              Local variable fonts + SIL OFL license texts
+static/img/                Generated hero artwork + girih pattern
 static/favicon.svg         App icon
 data/illustrative_demo.csv Synthetic demo values
 tests/test_app.py          API, validation, import/export and CLI regression tests
@@ -143,6 +162,7 @@ tests/frontend_smoke.mjs   Optional jsdom UI smoke test (npm run smoke)
 package.json               Optional Node dev dependency for the smoke test
 README_FA.md               Original Persian documentation (+ GUI section)
 DESIGN.md                  Design system and psychological rationale
+docs/preview.png           Screenshot of the default Persian workspace
 ```
 
 ---

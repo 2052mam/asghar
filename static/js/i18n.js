@@ -12,7 +12,7 @@ export const DICT = {
     "a11y.theme": "Switch colour theme",
     "a11y.close": "Close",
     "a11y.chartTable": "Chart data as table",
-    "brand.subtitle": "Tirole Omega · v1.1",
+    "brand.subtitle": "Tirole Omega · v1.2",
     "nav.workspace": "WORKSPACE",
     "nav.overview": "Overview",
     "nav.universe": "Universe",
@@ -28,7 +28,7 @@ export const DICT = {
     "health.missing": "{n} incomplete row(s)",
     "health.empty": "Universe is empty",
     "health.error": "Scoring unavailable",
-    "hero.chip": "EDUCATIONAL PROTOTYPE · v1.1",
+    "hero.chip": "EDUCATIONAL PROTOTYPE · v1.2",
     "hero.title": "Find what deserves deeper research — not what to buy.",
     "hero.body": "A calm workspace for turning your own dated research into a transparent six-factor screen. Every weight, score and assumption stays visible, editable and exportable.",
     "hero.ctaPrimary": "Open the universe",
@@ -36,6 +36,22 @@ export const DICT = {
     "hero.trust1": "No live data feed",
     "hero.trust2": "Published formula",
     "hero.trust3": "Local-first inputs",
+    "hero.metric1Value": "6", "hero.metric1Label": "research factors",
+    "hero.metric2Value": "100%", "hero.metric2Label": "transparent weights",
+    "hero.metric3Value": "0", "hero.metric3Label": "live data feeds",
+    "hero.floatEyebrow": "FACTOR SIGNATURE",
+    "hero.floatTitle": "Six inputs, one score",
+    "hero.floatNote": "Every bar is editable",
+    "workflow.title": "A deliberate three-step workflow",
+    "workflow.sub": "The interface nudges you from raw opinion to documented doubt.",
+    "workflow.1t": "Enter dated evidence", "workflow.1b": "Score six factors from 0 to 100 and record where the numbers came from.",
+    "workflow.2t": "Stress-test the ranking", "workflow.2b": "Change weights, inspect the distribution and see which rows are fragile.",
+    "workflow.3t": "Write the counter-case", "workflow.3b": "Open the weakest factor and note what would change your mind before deciding.",
+    "factorLegend.title": "The six-factor palette",
+    "factorLegend.sub": "Each factor keeps its own colour everywhere in the workspace.",
+    "spectrum.title": "Where the bands sit",
+    "spectrum.low": "Lower priority", "spectrum.mid": "More evidence", "spectrum.high": "Worth reviewing", "spectrum.top": "Deeper review",
+    "sidebar.progress": "Data completeness",
     "overview.ranking": "Ranking at a glance",
     "overview.rankingSub": "Top complete rows under your current weights.",
     "overview.dataHealth": "Data integrity",
@@ -290,7 +306,7 @@ export const DICT = {
     "a11y.theme": "تغییر تم رنگی",
     "a11y.close": "بستن",
     "a11y.chartTable": "دادههای نمودار بهصورت جدول",
-    "brand.subtitle": "تیرو امگا · نسخه ۱.۱",
+    "brand.subtitle": "تیرو امگا · نسخه ۱.۲",
     "nav.workspace": "فضای کار",
     "nav.overview": "نمای کلی",
     "nav.universe": "جامعه نمادها",
@@ -306,7 +322,7 @@ export const DICT = {
     "health.missing": "{n} ردیف ناقص",
     "health.empty": "جامعه نمادها خالی است",
     "health.error": "امتیازدهی در دسترس نیست",
-    "hero.chip": "نمونه اولیه آموزشی · نسخه ۱.۱",
+    "hero.chip": "نمونه اولیه آموزشی · نسخه ۱.۲",
     "hero.title": "پیدا کنید چه چیزی ارزش بررسی عمیقتر دارد — نه اینکه چه بخرید.",
     "hero.body": "فضایی آرام برای تبدیل پژوهش تاریخدار خود به یک غربال شفاف ششعاملی. هر وزن، امتیاز و فرض، قابل دیدن، ویرایش و خروجی گرفتن است.",
     "hero.ctaPrimary": "باز کردن جامعه نمادها",
@@ -314,6 +330,22 @@ export const DICT = {
     "hero.trust1": "بدون دریافت داده زنده",
     "hero.trust2": "فرمول منتشرشده",
     "hero.trust3": "ورودیها روی مرورگر شما",
+    "hero.metric1Value": "۶", "hero.metric1Label": "عامل پژوهشی",
+    "hero.metric2Value": "۱۰۰٪", "hero.metric2Label": "وزن شفاف",
+    "hero.metric3Value": "۰", "hero.metric3Label": "فید داده زنده",
+    "hero.floatEyebrow": "امضای عاملها",
+    "hero.floatTitle": "شش ورودی، یک امتیاز",
+    "hero.floatNote": "هر میله قابل ویرایش است",
+    "workflow.title": "گردش کاری سهمرحلهای و آگاهانه",
+    "workflow.sub": "رابط شما را از نظر خام به تردید مستند هدایت میکند.",
+    "workflow.1t": "شواهد تاریخدار وارد کنید", "workflow.1b": "شش عامل را از ۰ تا ۱۰۰ امتیاز دهید و منبع اعداد را ثبت کنید.",
+    "workflow.2t": "رتبهبندی را بیازمایید", "workflow.2b": "وزنها را تغییر دهید، توزیع را ببینید و ردیفهای شکننده را پیدا کنید.",
+    "workflow.3t": "خلاف آن را بنویسید", "workflow.3b": "ضعیفترین عامل را باز کنید و پیش از تصمیم، شواهد تغییر نظرتان را یادداشت کنید.",
+    "factorLegend.title": "رنگ شش عامل",
+    "factorLegend.sub": "هر عامل در سراسر فضای کار، رنگ ثابت خود را دارد.",
+    "spectrum.title": "جایگاه ردهها",
+    "spectrum.low": "اولویت پایین", "spectrum.mid": "شواهد بیشتر", "spectrum.high": "قابل بررسی", "spectrum.top": "بررسی عمیقتر",
+    "sidebar.progress": "کامل بودن دادهها",
     "overview.ranking": "نگاهی سریع به رتبهبندی",
     "overview.rankingSub": "ردیفهای کامل برتر با وزنهای فعلی شما.",
     "overview.dataHealth": "سلامت دادهها",
@@ -570,7 +602,10 @@ function stored(key, fallback) {
 export function initLang() {
   const saved = stored("aqx.lang", "");
   if (saved === "en" || saved === "fa") currentLang = saved;
-  else currentLang = (navigator.language || "en").toLowerCase().startsWith("fa") ? "fa" : "en";
+  // Persian is the product's primary language: it is the default even when the
+  // browser is set to another locale. English remains one click away and is
+  // remembered once chosen.
+  else currentLang = "fa";
   applyLang();
 }
 
@@ -618,6 +653,9 @@ function applyLang() {
   document.querySelectorAll("[data-i18n-title]").forEach((el) => {
     el.title = t(el.dataset.i18nTitle);
   });
-  const label = document.getElementById("lang-label");
-  if (label) label.textContent = currentLang === "en" ? "FA" : "EN";
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    const active = button.dataset.lang === currentLang;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-pressed", String(active));
+  });
 }
