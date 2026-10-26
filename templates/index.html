@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="AQx–Tirole Omega — a transparent, bilingual research workspace for multifactor screening. Educational prototype, not investment advice.">
+  <title>AQx–Tirole Omega · Research workspace</title>
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <script type="module" src="/static/js/app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main" data-i18n="a11y.skip">Skip to main content</a>
+
+<div class="app-shell">
+  <!-- ───────────────────────── Sidebar ───────────────────────── -->
+  <aside class="sidebar" id="sidebar" aria-label="Primary navigation">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="18" stroke="currentColor" stroke-opacity=".35"/><path d="M9 25.5 16 15l5.5 7.5L26 13l5 12.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="25.5" r="2.6" fill="currentColor"/></svg>
+      </div>
+      <div class="brand-text">
+        <strong>AQx<span class="brand-omega">Ω</span></strong>
+        <small data-i18n="brand.subtitle">Tirole Omega · v1.1</small>
+      </div>
+      <button class="icon-btn sidebar-close" id="sidebar-close" data-i18n-aria-label="a11y.closeMenu" aria-label="Close menu">
+        <svg class="icon"><use href="#i-close"></use></svg>
+      </button>
+    </div>
+
+    <nav class="nav" aria-label="Sections">
+      <p class="nav-label" data-i18n="nav.workspace">WORKSPACE</p>
+      <a class="nav-item" href="#/overview" data-view="overview"><svg class="icon"><use href="#i-grid"></use></svg><span data-i18n="nav.overview">Overview</span></a>
+      <a class="nav-item" href="#/universe" data-view="universe"><svg class="icon"><use href="#i-table"></use></svg><span data-i18n="nav.universe">Universe</span><span class="nav-badge" id="nav-row-count">0</span></a>
+      <a class="nav-item" href="#/results" data-view="results"><svg class="icon"><use href="#i-chart"></use></svg><span data-i18n="nav.results">Results</span></a>
+      <a class="nav-item" href="#/scenario" data-view="scenario"><svg class="icon"><use href="#i-flask"></use></svg><span data-i18n="nav.scenario">Scenario lab</span></a>
+      <a class="nav-item" href="#/method" data-view="method"><svg class="icon"><use href="#i-book"></use></svg><span data-i18n="nav.method">Method &amp; limits</span></a>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="integrity-card">
+        <svg class="icon"><use href="#i-shield"></use></svg>
+        <div>
+          <strong data-i18n="integrity.title">Research tool, not a signal</strong>
+          <span data-i18n="integrity.body">No live market data. No recommendations.</span>
+        </div>
+      </div>
+      <div class="sidebar-meta">
+        <span data-i18n="integrity.local">Your data stays in this browser</span>
+        <span class="version" id="app-version">v1.1.0</span>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-scrim" id="sidebar-scrim" hidden></div>
+
+  <!-- ───────────────────────── Workspace ───────────────────────── -->
+  <div class="workspace">
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menu-btn" data-i18n-aria-label="a11y.openMenu" aria-label="Open menu">
+        <svg class="icon"><use href="#i-menu"></use></svg>
+      </button>
+      <div class="topbar-heading">
+        <span class="eyebrow" data-i18n="topbar.eyebrow">MULTIFACTOR RESEARCH / AQx–TIROLE OMEGA</span>
+        <h1 id="view-title" data-i18n="nav.overview">Overview</h1>
+      </div>
+      <div class="topbar-actions">
+        <div class="health-pill" id="health-pill" role="status" title="">
+          <span class="health-dot" aria-hidden="true"></span>
+          <span id="health-text" data-i18n="health.checking">Checking data…</span>
+        </div>
+        <button class="seg-btn" id="lang-btn" data-i18n-aria-label="a11y.language" aria-label="Switch language">
+          <svg class="icon"><use href="#i-globe"></use></svg><span id="lang-label">FA</span>
+        </button>
+        <button class="icon-btn" id="theme-btn" data-i18n-aria-label="a11y.theme" aria-label="Switch colour theme">
+          <svg class="icon" id="theme-icon"><use href="#i-sun"></use></svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <!-- ═══════════════════ OVERVIEW ═══════════════════ -->
+      <section class="view is-active" id="view-overview" data-view="overview" aria-labelledby="overview-heading">
+        <div class="hero card">
+          <div class="hero-glow" aria-hidden="true"></div>
+          <div class="hero-copy">
+            <span class="chip chip-outline"><svg class="icon"><use href="#i-spark"></use></svg><span data-i18n="hero.chip">EDUCATIONAL PROTOTYPE · v1.1</span></span>
+            <h2 id="overview-heading" data-i18n="hero.title">Find what deserves deeper research — not what to buy.</h2>
+            <p data-i18n="hero.body">A calm workspace for turning your own dated research into a transparent six-factor screen. Every weight, score and assumption stays visible, editable and exportable.</p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#/universe"><svg class="icon is-directional"><use href="#i-arrow-right"></use></svg><span data-i18n="hero.ctaPrimary">Open the universe</span></a>
+              <button class="btn btn-ghost" id="hero-demo-btn"><svg class="icon"><use href="#i-spark"></use></svg><span data-i18n="hero.ctaSecondary">Load illustrative demo</span></button>
+            </div>
+            <div class="hero-trust">
+              <span><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="hero.trust1">No live data feed</span></span>
+              <span><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="hero.trust2">Published formula</span></span>
+              <span><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="hero.trust3">Local-first inputs</span></span>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbit">
+              <div class="orbit-ring ring-1"></div><div class="orbit-ring ring-2"></div><div class="orbit-ring ring-3"></div>
+              <div class="orbit-core">Ω</div>
+              <span class="orbit-node n1">CS</span><span class="orbit-node n2">VA</span><span class="orbit-node n3">EQ</span>
+              <span class="orbit-node n4">GR</span><span class="orbit-node n5">MM</span><span class="orbit-node n6">RC</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="kpi-grid" id="overview-kpis" aria-live="polite"></div>
+
+        <div class="grid grid-2-1">
+          <section class="card" aria-labelledby="ov-rank-title">
+            <div class="card-head">
+              <div><h3 id="ov-rank-title" data-i18n="overview.ranking">Ranking at a glance</h3><p class="card-sub" data-i18n="overview.rankingSub">Top complete rows under your current weights.</p></div>
+              <a class="text-link" href="#/results"><span data-i18n="common.viewAll">View all</span><svg class="icon"><use href="#i-arrow-right"></use></svg></a>
+            </div>
+            <div id="overview-chart" class="chart-host"></div>
+          </section>
+
+          <section class="card" aria-labelledby="ov-health-title">
+            <div class="card-head">
+              <div><h3 id="ov-health-title" data-i18n="overview.dataHealth">Data integrity</h3><p class="card-sub" data-i18n="overview.dataHealthSub">Missing inputs are shown, never guessed.</p></div>
+            </div>
+            <div class="health-body">
+              <div id="completeness-chart" class="donut-host"></div>
+              <div id="coverage-list" class="coverage-list"></div>
+            </div>
+            <div id="overview-warnings" class="inline-notices"></div>
+          </section>
+        </div>
+
+        <div class="grid grid-1-1">
+          <section class="card" aria-labelledby="ov-weights-title">
+            <div class="card-head">
+              <div><h3 id="ov-weights-title" data-i18n="overview.weights">How the score is weighted</h3><p class="card-sub" data-i18n="overview.weightsSub">Six subjective inputs, one weighted average.</p></div>
+              <a class="text-link" href="#/universe"><span data-i18n="common.edit">Edit</span><svg class="icon"><use href="#i-arrow-right"></use></svg></a>
+            </div>
+            <div id="overview-weights" class="weights-mini"></div>
+          </section>
+          <section class="card notice-card" aria-labelledby="ov-notice-title">
+            <div class="card-head">
+              <div><h3 id="ov-notice-title" data-i18n="overview.readFirst">Read this first</h3><p class="card-sub" data-i18n="overview.readFirstSub">Context that should travel with every score.</p></div>
+              <svg class="icon notice-icon"><use href="#i-info"></use></svg>
+            </div>
+            <ul class="notice-list" id="overview-limitations"></ul>
+            <a class="text-link" href="#/method"><span data-i18n="common.allLimits">All limitations &amp; method</span><svg class="icon"><use href="#i-arrow-right"></use></svg></a>
+          </section>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ UNIVERSE ═══════════════════ -->
+      <section class="view" id="view-universe" data-view="universe" aria-labelledby="universe-heading" hidden>
+        <div class="page-intro">
+          <div><h2 id="universe-heading" data-i18n="universe.title">Universe &amp; factor scores</h2><p data-i18n="universe.intro">Enter scores from 0 to 100. Leave a cell empty when evidence is missing — an empty cell is not a zero.</p></div>
+          <span class="save-state" id="save-state"><svg class="icon"><use href="#i-check"></use></svg><span data-i18n="universe.saved">Saved locally</span></span>
+        </div>
+
+        <section class="card toolbar-card" aria-label="Data tools">
+          <div class="toolbar">
+            <label class="field field-grow"><span class="field-label" data-i18n="universe.dataset">Starting dataset</span>
+              <select id="dataset-select" class="control"></select>
+            </label>
+            <div class="toolbar-buttons">
+              <input type="file" id="file-input" accept=".csv,.txt,.tsv,text/csv" hidden>
+              <button class="btn btn-soft" id="import-btn"><svg class="icon"><use href="#i-upload"></use></svg><span data-i18n="universe.import">Import CSV</span></button>
+              <button class="btn btn-soft" id="template-btn"><svg class="icon"><use href="#i-download"></use></svg><span data-i18n="universe.template">Template</span></button>
+              <button class="btn btn-soft" id="export-btn"><svg class="icon"><use href="#i-download"></use></svg><span data-i18n="universe.export">Export ranked CSV</span></button>
+              <button class="btn btn-primary btn-icon-only" id="add-row-btn" data-i18n-aria-label="universe.addRowAria" aria-label="Add ticker"><svg class="icon"><use href="#i-plus"></use></svg></button>
+            </div>
+          </div>
+          <p class="dataset-description" id="dataset-description"></p>
+          <div class="provenance">
+            <label class="field"><span class="field-label" data-i18n="universe.asOf">Research as-of date</span><input type="date" id="as-of-input" class="control"></label>
+            <label class="field field-grow"><span class="field-label" data-i18n="universe.sourceNote">Data source / provenance note</span><input type="text" id="source-note" class="control" data-i18n-placeholder="universe.sourcePlaceholder" placeholder="e.g. FY1403 audited statements, entered by analyst"></label>
+          </div>
+        </section>
+
+        <section class="card" aria-labelledby="weights-title">
+          <div class="card-head">
+            <div><h3 id="weights-title" data-i18n="universe.weightsTitle">Factor weights</h3><p class="card-sub" data-i18n="universe.weightsSub">Changing a weight changes the ranking. Applied weights are always normalised to 100%.</p></div>
+            <div class="weight-actions">
+              <span class="weight-total" id="weight-total">100%</span>
+              <button class="btn btn-tiny" id="normalize-btn" data-i18n="universe.normalize">Normalise</button>
+              <button class="btn btn-tiny" id="reset-weights-btn" data-i18n="universe.resetWeights">Reset</button>
+            </div>
+          </div>
+          <div id="weight-sliders" class="weight-sliders"></div>
+        </section>
+
+        <section class="card table-card" aria-labelledby="table-title">
+          <div class="card-head table-head">
+            <div><h3 id="table-title" data-i18n="universe.scoreTable">Score table</h3><p class="card-sub" id="table-caption" data-i18n="universe.scoreTableSub">Scores are recalculated automatically.</p></div>
+            <div class="table-tools">
+              <label class="search-field"><svg class="icon"><use href="#i-search"></use></svg><input type="search" id="universe-search" data-i18n-placeholder="common.search" placeholder="Search tickers…" data-i18n-aria-label="common.search" aria-label="Search tickers"></label>
+              <button class="btn btn-tiny btn-danger-ghost" id="clear-btn"><svg class="icon"><use href="#i-trash"></use></svg><span data-i18n="universe.clear">Clear</span></button>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table" id="universe-table">
+              <thead><tr id="universe-head-row"></tr></thead>
+              <tbody id="universe-body"></tbody>
+            </table>
+          </div>
+          <div class="table-foot">
+            <p><svg class="icon"><use href="#i-info"></use></svg><span data-i18n="universe.tableNote">Empty cells stay empty: no composite score is computed for an incomplete row. Use Tab / Shift+Tab to move between cells.</span></p>
+            <span id="row-count-label"></span>
+          </div>
+          <div id="universe-warnings" class="inline-notices"></div>
+        </section>
+      </section>
+
+      <!-- ═══════════════════ RESULTS ═══════════════════ -->
+      <section class="view" id="view-results" data-view="results" aria-labelledby="results-heading" hidden>
+        <div class="page-intro">
+          <div><h2 id="results-heading" data-i18n="results.title">Screening results</h2><p data-i18n="results.intro">A ranked view of your inputs — with the uncertainty deliberately kept in frame.</p></div>
+          <div class="page-actions"><span class="muted-small" id="computed-at"></span><button class="btn btn-soft" id="recalculate-btn"><svg class="icon"><use href="#i-refresh"></use></svg><span data-i18n="results.recalculate">Recalculate</span></button><button class="btn btn-primary" id="results-export-btn"><svg class="icon"><use href="#i-download"></use></svg><span data-i18n="universe.export">Export ranked CSV</span></button></div>
+        </div>
+
+        <div class="kpi-grid" id="results-kpis" aria-live="polite"></div>
+
+        <div class="grid grid-2-1">
+          <section class="card" aria-labelledby="dist-title">
+            <div class="card-head"><div><h3 id="dist-title" data-i18n="results.distribution">Score distribution</h3><p class="card-sub" data-i18n="results.distributionSub">How complete rows spread across the 0–100 scale.</p></div></div>
+            <div id="distribution-chart" class="chart-host"></div>
+            <p class="chart-caption" data-i18n="results.distributionNote">Bands are decision prompts, not buy/sell thresholds. A one-point change can move a row between bands.</p>
+          </section>
+          <section class="card" aria-labelledby="bands-title">
+            <div class="card-head"><div><h3 id="bands-title" data-i18n="results.bands">Interpretation bands</h3><p class="card-sub" data-i18n="results.bandsSub">Neutral, text-first labels.</p></div></div>
+            <div id="bands-list" class="bands-list"></div>
+          </section>
+        </div>
+
+        <section class="card" aria-labelledby="rank-title">
+          <div class="card-head rank-head">
+            <div><h3 id="rank-title" data-i18n="results.rankedList">Ranked universe</h3><p class="card-sub" data-i18n="results.rankedListSub">Select any row to inspect its factor profile and counter-evidence.</p></div>
+            <div class="rank-filters">
+              <label class="search-field"><svg class="icon"><use href="#i-search"></use></svg><input type="search" id="results-search" data-i18n-placeholder="common.search" placeholder="Search tickers…" data-i18n-aria-label="common.search" aria-label="Search results"></label>
+              <div class="filter-chips" id="status-filters" role="group" data-i18n-aria-label="results.filterAria" aria-label="Filter by status"></div>
+            </div>
+          </div>
+          <div id="ranked-list" class="ranked-list" aria-live="polite"></div>
+          <p class="empty-state" id="ranked-empty" hidden data-i18n="results.noRows">No rows match. Try a different filter or add data in the Universe view.</p>
+        </section>
+
+        <section class="card sensitivity-card" aria-labelledby="sens-title">
+          <div class="card-head"><div><h3 id="sens-title" data-i18n="results.sensitivity">Weight sensitivity check</h3><p class="card-sub" data-i18n="results.sensitivitySub">A robustness test against overconfidence in your chosen weights.</p></div><svg class="icon notice-icon"><use href="#i-layers"></use></svg></div>
+          <div class="sensitivity-body"><p id="sensitivity-summary" class="sensitivity-summary"></p><div id="sensitivity-list" class="movers-list"></div></div>
+        </section>
+      </section>
+
+      <!-- ═══════════════════ SCENARIO ═══════════════════ -->
+      <section class="view" id="view-scenario" data-view="scenario" aria-labelledby="scenario-heading" hidden>
+        <div class="page-intro">
+          <div><h2 id="scenario-heading" data-i18n="scenario.title">Scenario lab</h2><p data-i18n="scenario.intro">Explore the consequences of assumptions — not predictions of what will happen.</p></div>
+          <span class="chip chip-warning"><svg class="icon"><use href="#i-alert"></use></svg><span data-i18n="scenario.assumptionChip">ASSUMPTIONS, NOT FORECASTS</span></span>
+        </div>
+
+        <div class="grid grid-1-2 scenario-grid">
+          <section class="card" aria-labelledby="sim-form-title">
+            <div class="card-head"><div><h3 id="sim-form-title" data-i18n="scenario.assumptions">Assumptions</h3><p class="card-sub" data-i18n="scenario.assumptionsSub">Every input below is yours. Nothing is estimated from market data.</p></div></div>
+            <div class="preset-row" role="group" data-i18n-aria-label="scenario.presetsAria" aria-label="Assumption presets">
+              <button class="btn btn-tiny preset" data-preset="cautious" data-i18n="scenario.presetCautious">Cautious</button>
+              <button class="btn btn-tiny preset is-selected" data-preset="base" data-i18n="scenario.presetBase">Base</button>
+              <button class="btn btn-tiny preset" data-preset="stressed" data-i18n="scenario.presetStressed">Stressed</button>
+            </div>
+            <div class="form-grid">
+              <label class="field"><span class="field-label" data-i18n="scenario.capital">Initial capital</span><input class="control" type="number" id="sim-capital" value="100000000" min="1" step="1000000" inputmode="numeric"><span class="field-help" data-i18n="scenario.capitalHelp">Any currency unit; the same unit is used in outputs.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.return">Assumed annual return (%)</span><input class="control" type="number" id="sim-return" value="15" min="-99" max="200" step="1"><span class="field-help" data-i18n="scenario.returnHelp">A hypothetical drift, not an expected return.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.volatility">Annual volatility (%)</span><input class="control" type="number" id="sim-volatility" value="30" min="0" max="300" step="1"><span class="field-help" data-i18n="scenario.volatilityHelp">Higher volatility widens the range of outcomes.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.years">Horizon (years)</span><input class="control" type="number" id="sim-years" value="1" min="0.05" max="30" step="0.5"><span class="field-help" data-i18n="scenario.yearsHelp">Longer horizons compound assumptions.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.simulations">Simulations</span><input class="control" type="number" id="sim-simulations" value="10000" min="100" max="50000" step="1000"><span class="field-help" data-i18n="scenario.simulationsHelp">More paths stabilise the chart, not the assumptions.</span></label>
+              <label class="field"><span class="field-label" data-i18n="scenario.seed">Random seed</span><input class="control" type="number" id="sim-seed" value="42" min="0" max="999999" step="1"><span class="field-help" data-i18n="scenario.seedHelp">The same seed reproduces the same chart.</span></label>
+            </div>
+            <button class="btn btn-primary btn-block" id="run-sim-btn"><svg class="icon"><use href="#i-flask"></use></svg><span data-i18n="scenario.run">Run simulation</span></button>
+            <div class="assumption-audit">
+              <h4 data-i18n="scenario.auditTitle">Before reading the chart</h4>
+              <ul id="audit-list"></ul>
+            </div>
+          </section>
+
+          <div class="scenario-results">
+            <section class="card" id="sim-empty-card" aria-labelledby="sim-empty-title">
+              <div class="sim-empty"><div class="sim-empty-icon"><svg class="icon"><use href="#i-flask"></use></svg></div><h3 id="sim-empty-title" data-i18n="scenario.emptyTitle">No scenario yet</h3><p data-i18n="scenario.emptyBody">Set your assumptions and run the simulation. The chart will show the full spread of outcomes — including the uncomfortable tail.</p></div>
+            </section>
+            <section class="card" id="sim-result-card" hidden aria-labelledby="sim-result-title">
+              <div class="card-head"><div><h3 id="sim-result-title" data-i18n="scenario.outcomes">Distribution of terminal values</h3><p class="card-sub" data-i18n="scenario.outcomesSub">Log-normal paths under the assumptions you chose.</p></div><span class="chip chip-outline" id="sim-count-chip"></span></div>
+              <div id="simulation-chart" class="chart-host chart-host-tall"></div>
+              <p class="chart-caption" id="sim-chart-caption"></p>
+              <div class="sim-kpis" id="sim-kpis"></div>
+            </section>
+            <section class="card" id="sim-sens-card" hidden aria-labelledby="sim-sens-title">
+              <div class="card-head"><div><h3 id="sim-sens-title" data-i18n="scenario.sensTitle">Assumption sensitivity</h3><p class="card-sub" data-i18n="scenario.sensSub">The same seed with volatility halved and increased by half.</p></div></div>
+              <div class="table-scroll"><table class="data-table compact-table" id="sim-sens-table"></table></div>
+            </section>
+            <section class="card caveat-card" id="sim-caveat-card" hidden>
+              <svg class="icon"><use href="#i-alert"></use></svg>
+              <div><strong data-i18n="scenario.caveatTitle">This is not the probability that a stock rises.</strong><p data-i18n="scenario.caveatBody">The model assumes constant drift, constant volatility and normally distributed shocks. Real markets have jumps, regime changes, costs and liquidity constraints. Until parameters are calibrated against valid historical data, these numbers are illustrative scenarios only.</p></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════════════════ METHOD ═══════════════════ -->
+      <section class="view" id="view-method" data-view="method" aria-labelledby="method-heading" hidden>
+        <div class="page-intro"><div><h2 id="method-heading" data-i18n="method.title">Method, limits &amp; design</h2><p data-i18n="method.intro">No hidden logic. Everything below describes exactly what the tool does and what it deliberately does not do.</p></div></div>
+
+        <div class="grid grid-1-1">
+          <section class="card" aria-labelledby="formula-title">
+            <div class="card-head"><div><h3 id="formula-title" data-i18n="method.formulaTitle">The formula</h3><p class="card-sub" data-i18n="method.formulaSub">A weighted average of six 0–100 inputs.</p></div></div>
+            <div class="formula-box" dir="ltr">S = <span class="formula-sum">Σ</span> ( w<sub>i</sub> × x<sub>i</sub> ) &nbsp;·&nbsp; x<sub>i</sub> ∈ [0, 100]</div>
+            <p data-i18n="method.formulaBody">Weights are normalised to sum to 1 before scoring. If any factor is missing, the row is marked incomplete and no score is produced — missing evidence is never imputed and never treated as zero.</p>
+            <div class="formula-example" id="formula-example"></div>
+          </section>
+          <section class="card" aria-labelledby="factor-title">
+            <div class="card-head"><div><h3 id="factor-title" data-i18n="method.factorTitle">Factors &amp; default weights</h3><p class="card-sub" data-i18n="method.factorSub">Hover or focus a row for the debiasing question.</p></div></div>
+            <div id="method-factors" class="method-factors"></div>
+          </section>
+        </div>
+
+        <section class="card" aria-labelledby="limits-title">
+          <div class="card-head"><div><h3 id="limits-title" data-i18n="method.limitsTitle">Limitations &amp; ethical guardrails</h3><p class="card-sub" data-i18n="method.limitsSub">These statements travel with the results into any exported file’s context.</p></div></div>
+          <ol class="limits-list" id="method-limitations"></ol>
+        </section>
+
+        <section class="card" aria-labelledby="design-title">
+          <div class="card-head"><div><h3 id="design-title" data-i18n="method.designTitle">Design system &amp; psychological rationale</h3><p class="card-sub" data-i18n="method.designSub">The interface is built to slow down judgement, not to accelerate conviction.</p></div></div>
+          <div class="design-grid" id="design-principles"></div>
+        </section>
+
+        <div class="grid grid-1-1">
+          <section class="card" aria-labelledby="a11y-title">
+            <div class="card-head"><div><h3 id="a11y-title" data-i18n="method.a11yTitle">Accessibility &amp; privacy</h3><p class="card-sub" data-i18n="method.a11ySub">Usable by more people, in more conditions.</p></div></div>
+            <ul class="tick-list" id="a11y-list"></ul>
+          </section>
+          <section class="card" aria-labelledby="cli-title">
+            <div class="card-head"><div><h3 id="cli-title" data-i18n="method.cliTitle">Still works from the CLI</h3><p class="card-sub" data-i18n="method.cliSub">The original script remains the analytical source of truth.</p></div></div>
+            <pre class="code-block" dir="ltr"><code>pip install -r requirements.txt
+python app.py                 # web interface on :5000
+python aqx_tirole_omega.py \
+  --input universe_input.csv \
+  --output aqx_ranked_output.csv</code></pre>
+            <p class="card-sub" data-i18n="method.cliBody">The web layer imports the same scoring and simulation functions; there is no second implementation of the maths.</p>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span data-i18n="footer.disclaimer">Educational research prototype · Not investment advice · No live market data</span>
+      <span>AQx–Tirole Omega <span id="footer-version">v1.1.0</span> · <span data-i18n="footer.builtWith">Flask + vanilla HTML/CSS/JS</span></span>
+    </footer>
+  </div>
+</div>
+
+<!-- ───────────────────────── Detail drawer ───────────────────────── -->
+<div class="drawer-scrim" id="drawer-scrim" hidden></div>
+<aside class="drawer" id="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
+  <div class="drawer-head">
+    <div><span class="eyebrow" data-i18n="drawer.eyebrow">FACTOR PROFILE</span><h2 id="drawer-title" dir="auto">—</h2></div>
+    <button class="icon-btn" id="drawer-close" data-i18n-aria-label="a11y.close" aria-label="Close"><svg class="icon"><use href="#i-close"></use></svg></button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</aside>
+
+<!-- ───────────────────────── Confirm dialog ───────────────────────── -->
+<dialog class="confirm-dialog" id="confirm-dialog" aria-labelledby="confirm-title">
+  <h3 id="confirm-title" data-i18n="dialog.title">Are you sure?</h3>
+  <p id="confirm-message"></p>
+  <div class="dialog-actions"><button class="btn btn-soft" id="confirm-cancel" data-i18n="common.cancel">Cancel</button><button class="btn btn-danger" id="confirm-ok" data-i18n="common.confirm">Confirm</button></div>
+</dialog>
+
+<div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false"></div>
+
+<!-- ───────────────────────── Icon sprite ───────────────────────── -->
+<svg class="icon-sprite" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.6"/><rect x="14" y="3" width="7" height="7" rx="1.6"/><rect x="3" y="14" width="7" height="7" rx="1.6"/><rect x="14" y="14" width="7" height="7" rx="1.6"/></symbol>
+  <symbol id="i-table" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11M15 9v11"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V5M4 19h16"/><rect x="7" y="12" width="3" height="5" rx="1"/><rect x="12" y="8" width="3" height="9" rx="1"/><rect x="17" y="5" width="3" height="12" rx="1"/></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6L4.8 18a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 9V3M7.5 15h9"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 5.5v15M20 18v3H6.5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3Z"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m0 0L8 8m4-4 4 4M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 2.5 17.4A2 2 0 0 0 4.2 20.4h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 6.3M20 5v6h-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 4.5 6v6c0 4.6 3.2 7.9 7.5 9 4.3-1.1 7.5-4.4 7.5-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6.3 6.3l2.8 2.8M14.9 14.9l2.8 2.8M17.7 6.3l-2.8 2.8M9.1 14.9l-2.8 2.8"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14m0 0-5-5m5 5-5 5"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5m0 0-5 5m5-5 5 5"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14m0 0-5-5m5 5 5-5"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5ZM3 12l9 5 9-5M3 16l9 5 9-5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+</svg>
+</body>
+</html>

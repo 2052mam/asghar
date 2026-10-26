@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.coverage
+
+# Local working data (keep the shipped templates)
+universe_input.csv
+aqx_ranked_output.csv
+instance/
+*.log
+.env
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Optional frontend test tooling
+node_modules/
+package-lock.json
+
+# Build artefacts
+dist/
+build/
